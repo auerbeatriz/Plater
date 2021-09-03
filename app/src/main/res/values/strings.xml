@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">Plater</string>
+
+    <!--buttons name-->
+    <string name="btn_skip_intro_activity">Próximo</string>
+    <string name="btn_get_started">Comece Agora</string>
+
+    <!--image descriptions-->
+    <string name="intro_image_description">Imagem ilustrativa</string>
+
 </resources>
