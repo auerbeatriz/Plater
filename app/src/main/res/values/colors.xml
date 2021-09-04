@@ -17,6 +17,7 @@
 
     <color name="primaryVariant">#dddddd</color>
     <color name="orange">#FF8040</color>
+    <color name="gray">#404040</color>
     <color name="gradient_start_color">#4c84ff</color>
     <color name="gradient_end_color">#18a3fe</color>
 

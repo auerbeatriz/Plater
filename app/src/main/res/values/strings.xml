@@ -1,11 +1,21 @@
 <resources>
     <string name="app_name">Plater</string>
 
-    <!--buttons name-->
-    <string name="btn_skip_intro_activity">Próximo</string>
-    <string name="btn_get_started">Comece Agora</string>
-
     <!--image descriptions-->
     <string name="intro_image_description">Imagem ilustrativa</string>
+
+    <!--Options name-->
+    <string name="home">Home</string>
+    <string name="filters">Filtros</string>
+    <string name="recipe_book">Livro de Receitas</string>
+    <string name="config_option">Configurações</string>
+
+    <!-- Fragment placeholder -->
+    <string name="home_fragment">Home</string>
+    <string name="filter_fragment">Filtros</string>
+    <string name="recipe_book_fragment">Livro de receitas</string>
+
+    <!-- Placeholders -->
+    <string name="search_placeholder">Pesquisar receita ou usuário</string>
 
 </resources>
