@@ -32,8 +32,10 @@
     <string name="tv_cadastre">Cadastre-se</string>
     <string name="esqueceu_senha">Esqueceu a senha?</string>
 
-
+    <!--Static text-->
+    <string name="send_email">Digite o email associado a sua conta Plater. Um código de verificação será enviado nos próximos instantes.</string>
     <!--Buttons-->
     <string name="btn_cadastrar">Cadastrar</string>
+    <string name="btn_envie_email">Enviar código</string>
 
 </resources>
