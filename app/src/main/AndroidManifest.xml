@@ -9,7 +9,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Plater">
-        <activity android:name=".SigninActivity"></activity>
+        <activity android:name=".ForgotPasswordActivity"
+            android:parentActivityName=".SigninActivity" >
+        </activity>
+        <activity android:name=".SigninActivity" android:launchMode="singleTop"/>
         <activity android:name=".SignupActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -17,7 +20,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity"></activity>
+        <activity android:name=".MainActivity" />
 
         <meta-data
             android:name="preloaded_fonts"

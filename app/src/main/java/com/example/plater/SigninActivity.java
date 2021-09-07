@@ -39,5 +39,14 @@ public class SigninActivity extends AppCompatActivity {
                 startActivity(i);
             }
         });
+
+        TextView tvEsqueciSenha = findViewById(R.id.tv_esqueceu_senha);
+        tvEsqueciSenha.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(SigninActivity.this, ForgotPasswordActivity.class);
+                startActivity(i);
+            }
+        });
     }
 }
