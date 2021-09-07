@@ -3,6 +3,8 @@
 
     <!--image descriptions-->
     <string name="intro_image_description">Imagem ilustrativa</string>
+    <string name="description_logo_horizontal">Logo do aplicativo, uma colher dentro de uma tigela com barras verticais acima em cor sólida laranja.
+    Ao lado direito, o nome Plater.</string>
 
     <!--Options name-->
     <string name="home">Home</string>
@@ -17,5 +19,21 @@
 
     <!-- Placeholders -->
     <string name="search_placeholder">Pesquisar receita ou usuário</string>
+    <string name="et_nome_placeholder">nome</string>
+    <string name="et_usuario_placeholder">nome de usuário</string>
+    <string name="et_email_placeholder">email</string>
+    <string name="et_senha_placehoder">senha</string>
+
+    <!--TextView-->
+    <string name="signup">Cadastro</string>
+    <string name="tv_conta_um">Já possui uma conta?</string>
+    <string name="tv_entrar">Entrar</string>
+    <string name="tv_sem_conta">Ainda não é cadastrado?</string>
+    <string name="tv_cadastre">Cadastre-se</string>
+    <string name="esqueceu_senha">Esqueceu a senha?</string>
+
+
+    <!--Buttons-->
+    <string name="btn_cadastrar">Cadastrar</string>
 
 </resources>
