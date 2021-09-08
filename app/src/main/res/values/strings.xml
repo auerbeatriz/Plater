@@ -41,9 +41,6 @@
     <string name="verify_code">Insira o código de verificação enviado para o email.</string>
     <string name="change_password">Crie uma nova senha para a sua conta.</string>
 
-    <string name="recipe_title">Waffle americano</string>
-    <string name="recipe_description">Simple and Easy Waffle Recipe – Try our classic recipe (with simple secret ingredient and key step!) for the best fluffy and crispy homemade waffles. They are quick to make from scratch and perfect for loading with your favorite toppings!</string>
-    <string name="user_name">fulano</string>
 
     <!--Buttons-->
     <string name="btn_cadastrar">Cadastrar</string>

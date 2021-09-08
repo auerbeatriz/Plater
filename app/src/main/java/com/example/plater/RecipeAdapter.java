@@ -39,7 +39,7 @@ public class RecipeAdapter extends RecyclerView.Adapter {
         RecipeData recipeData = recipeDataList.get(position);
 
         ImageView imageView = holder.itemView.findViewById(R.id.imv_recipeImage);
-        imageView.setImageBitmap(recipeData.image);
+        imageView.setImageResource(recipeData.image);
 
         TextView tvTitle = holder.itemView.findViewById(R.id.tv_recipeTitle);
         tvTitle.setText(recipeData.title);
@@ -48,7 +48,7 @@ public class RecipeAdapter extends RecyclerView.Adapter {
         tvDescription.setText(recipeData.description);
 
         TextView tvCreator = holder.itemView.findViewById(R.id.tv_recipeUserCreator);
-        tvDescription.setText(recipeData.userName);
+        tvCreator.setText(recipeData.userName);
     }
 
     @Override

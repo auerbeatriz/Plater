@@ -2,13 +2,16 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="wrap_content"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="8dp">
+    android:layout_marginStart="8dp"
+    android:layout_marginLeft="8dp"
+    android:layout_marginEnd="8dp"
+    android:layout_marginRight="8dp">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cvRecipe"
-        android:layout_width="@dimen/recipe_item_width"
+        android:layout_width="0dp"
         android:layout_height="@dimen/recipe_item_height"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
@@ -31,16 +34,15 @@
 
             <ImageView
                 android:id="@+id/imv_recipeImage"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="0dp"
+                android:contentDescription="@string/recipeImage_description"
                 android:scaleType="centerCrop"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/img_wafflefix"
-                android:contentDescription="@string/recipeImage_description"
-                />
+                app:srcCompat="@drawable/img_wafflefix" />
 
             <View
                 android:id="@+id/view_containerRecipeData"
@@ -62,7 +64,6 @@
                 android:layout_marginEnd="8dp"
                 android:layout_marginRight="8dp"
                 android:fontFamily="sans-serif-medium"
-                android:text="@string/recipe_title"
                 android:textColor="@color/common_gray"
                 android:textSize="16sp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -72,17 +73,18 @@
             <TextView
                 android:id="@+id/tv_recipeDescription"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="0dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginLeft="8dp"
                 android:layout_marginTop="4dp"
                 android:layout_marginEnd="8dp"
                 android:layout_marginRight="8dp"
+                android:layout_marginBottom="4dp"
                 android:fontFamily="@font/poppins_light"
                 android:maxHeight="@dimen/recipeDescription_max_height"
-                android:text="@string/recipe_description"
                 android:textColor="@color/common_gray"
                 android:textSize="12sp"
+                app:layout_constraintBottom_toTopOf="@+id/tv_recipeUserCreator"
                 app:layout_constraintEnd_toEndOf="@+id/view_containerRecipeData"
                 app:layout_constraintStart_toStartOf="@+id/view_containerRecipeData"
                 app:layout_constraintTop_toBottomOf="@+id/tv_recipeTitle" />
@@ -93,31 +95,30 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginLeft="8dp"
-                android:layout_marginTop="4dp"
                 android:layout_marginEnd="8dp"
                 android:layout_marginRight="8dp"
-                android:drawableLeft="@drawable/ic_user_arroba"
+                android:layout_marginBottom="4dp"
                 android:drawableStart="@drawable/ic_user_arroba"
+                android:drawableLeft="@drawable/ic_user_arroba"
                 android:fontFamily="@font/poppins_light"
-                android:text="@string/user_name"
                 android:textColor="@color/medium_gray2"
                 android:textSize="12sp"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/ibtn_favorite"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_recipeDescription" />
+                app:layout_constraintStart_toStartOf="parent" />
 
             <ImageButton
                 android:id="@+id/ibtn_favorite"
-                android:layout_width="13dp"
-                android:layout_height="13dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
                 android:layout_marginRight="8dp"
                 android:background="#00FFFFFF"
+                android:contentDescription="@string/ibtn_favoritar_description"
                 app:layout_constraintBottom_toBottomOf="@+id/tv_recipeUserCreator"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/tv_recipeUserCreator"
-                app:srcCompat="@drawable/ic_favoritar"
-                android:contentDescription="@string/ibtn_favoritar_description"/>
+                app:srcCompat="@drawable/ic_gostar_70" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

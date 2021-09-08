@@ -58,8 +58,7 @@ public class HomeFragment extends Fragment {
         RecipeAdapter recipeAdapter = new RecipeAdapter(getContext(), recipeDataList);
 
         float w = getResources().getDimension(R.dimen.recipe_item_width);
-        int nColumns = Util.calculateNoOfColumns(getContext(), w);
-        GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(), nColumns);
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(), 2);
 
         RecyclerView rvRecipes = getView().findViewById(R.id.rv_home);
         rvRecipes.setAdapter(recipeAdapter);

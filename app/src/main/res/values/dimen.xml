@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <dimen name="recipe_item_width">190dp</dimen>
+    <dimen name="recipe_item_width">170dp</dimen>
     <dimen name="recipe_item_height">250dp</dimen>
 
     <dimen name="cardView_corner">7dp</dimen>
