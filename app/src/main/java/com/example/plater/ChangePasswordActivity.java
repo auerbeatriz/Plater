@@ -10,7 +10,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 
-public class ForgotPasswordActivity extends AppCompatActivity {
+public class ChangePasswordActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,24 +19,23 @@ public class ForgotPasswordActivity extends AppCompatActivity {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
-        setContentView(R.layout.activity_forgot_password);
+        setContentView(R.layout.activity_change_password);
 
         //Integrando a nova toolbar com a activity
-        Toolbar toolbar = findViewById(R.id.tb_forgotPassword);
+        Toolbar toolbar = findViewById(R.id.tb_ChangePassword);
         setSupportActionBar(toolbar);
 
         getSupportActionBar().setElevation(0);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         //Navigation between screens
-        Button btnEnviarEmail = findViewById(R.id.btn_confirmPassword);
-        btnEnviarEmail.setOnClickListener(new View.OnClickListener() {
+        Button btnAlterarSenha = findViewById(R.id.btn_confirmPassword);
+        btnAlterarSenha.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(ForgotPasswordActivity.this, VerifyCodeActivity.class);
+                Intent i = new Intent(ChangePasswordActivity.this, SigninActivity.class);
                 startActivity(i);
             }
         });
-
     }
 }

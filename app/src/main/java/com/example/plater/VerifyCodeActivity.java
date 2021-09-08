@@ -3,9 +3,12 @@ package com.example.plater;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.Button;
 
 public class VerifyCodeActivity extends AppCompatActivity {
 
@@ -19,10 +22,20 @@ public class VerifyCodeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_verify_code);
 
         //Integrando a nova toolbar com a activity
-        Toolbar toolbar = findViewById(R.id.tb_forgotPassword);
+        Toolbar toolbar = findViewById(R.id.tb_verifyCode);
         setSupportActionBar(toolbar);
 
         getSupportActionBar().setElevation(0);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        //Navigation between screens
+        Button btnVerificarCodigo = findViewById(R.id.btn_enviarCodigo_fp);
+        btnVerificarCodigo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(VerifyCodeActivity.this, ChangePasswordActivity.class);
+                startActivity(i);
+            }
+        });
     }
 }

@@ -10,21 +10,22 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Plater">
         <activity
+            android:name=".ChangePasswordActivity"
+            android:label="Alterar a senha"
+            android:parentActivityName=".ForgotPasswordActivity">
+
+        </activity>
+        <activity
             android:name=".VerifyCodeActivity"
             android:label="Esqueceu a senha?"
-            android:parentActivityName=".ForgotPasswordActivity">
-        </activity>
-
+            android:parentActivityName=".ForgotPasswordActivity"></activity>
         <activity
             android:name=".ForgotPasswordActivity"
             android:label="Esqueceu a senha?"
-            android:parentActivityName=".SigninActivity"></activity>
-
+            android:parentActivityName=".SigninActivity" />
         <activity
             android:name=".SigninActivity"
-            android:launchMode="singleTop" />
-
-        <activity android:name=".SignupActivity">
+            android:launchMode="singleTop" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -32,6 +33,7 @@
             </intent-filter>
         </activity>
 
+        <activity android:name=".SignupActivity"></activity>
         <activity android:name=".MainActivity" />
 
         <meta-data

@@ -23,6 +23,8 @@
     <string name="et_usuario_placeholder">nome de usuário</string>
     <string name="et_email_placeholder">email</string>
     <string name="et_senha_placehoder">senha</string>
+    <string name="et_novaSenha_placeholder">nova senha</string>
+    <string name="et_confirmeSenha_placeholder">confirmar senha</string>
 
     <!--TextView-->
     <string name="signup">Cadastro</string>
@@ -35,8 +37,11 @@
     <!--Static text-->
     <string name="send_email">Digite o email associado a sua conta Plater. Um código de verificação será enviado nos próximos instantes.</string>
     <string name="verify_code">Insira o código de verificação enviado para o email.</string>
+    <string name="change_password">Crie uma nova senha para a sua conta.</string>
+
     <!--Buttons-->
     <string name="btn_cadastrar">Cadastrar</string>
     <string name="btn_envie_email">Enviar código</string>
-
+    <string name="btn_alterarSenha">Alterar senha</string>
+    <string name="btn_verificarCodigo">Verificar código</string>
 </resources>
