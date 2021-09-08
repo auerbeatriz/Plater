@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <style name="container_recipeData">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">100dp</item>
+        <item name="android:background"></item>
+    </style>
+
     <style name="et_form">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
