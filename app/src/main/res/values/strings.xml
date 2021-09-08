@@ -34,6 +34,7 @@
 
     <!--Static text-->
     <string name="send_email">Digite o email associado a sua conta Plater. Um código de verificação será enviado nos próximos instantes.</string>
+    <string name="verify_code">Insira o código de verificação enviado para o email.</string>
     <!--Buttons-->
     <string name="btn_cadastrar">Cadastrar</string>
     <string name="btn_envie_email">Enviar código</string>
