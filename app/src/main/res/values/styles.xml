@@ -4,7 +4,7 @@
     <style name="container_recipeData">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">100dp</item>
-        <item name="android:background"></item>
+        <item name="android:background">@drawable/container_recipe_data</item>
     </style>
 
     <style name="et_form">
