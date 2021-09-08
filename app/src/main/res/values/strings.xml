@@ -5,6 +5,8 @@
     <string name="intro_image_description">Imagem ilustrativa</string>
     <string name="description_logo_horizontal">Logo do aplicativo, uma colher dentro de uma tigela com barras verticais acima em cor sólida laranja.
     Ao lado direito, o nome Plater.</string>
+    <string name="recipeImage_description">Imagem ilustrativa da receita</string>
+    <string name="ibtn_favoritar_description">Botão em formato de coração. Ao clicá-lo, poderá adicionar essa receita em seu livro de receitas.</string>
 
     <!--Options name-->
     <string name="home">Home</string>
@@ -38,6 +40,10 @@
     <string name="send_email">Digite o email associado a sua conta Plater. Um código de verificação será enviado nos próximos instantes.</string>
     <string name="verify_code">Insira o código de verificação enviado para o email.</string>
     <string name="change_password">Crie uma nova senha para a sua conta.</string>
+
+    <string name="recipe_title">Waffle americano</string>
+    <string name="recipe_description">Simple and Easy Waffle Recipe – Try our classic recipe (with simple secret ingredient and key step!) for the best fluffy and crispy homemade waffles. They are quick to make from scratch and perfect for loading with your favorite toppings!</string>
+    <string name="user_name">fulano</string>
 
     <!--Buttons-->
     <string name="btn_cadastrar">Cadastrar</string>

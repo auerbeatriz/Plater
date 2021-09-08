@@ -2,11 +2,17 @@ package com.example.plater;
 
 import android.os.Bundle;
 
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -41,5 +47,22 @@ public class HomeFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_home, container, false);
+    }
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        MainActivityViewModel viewModel = new ViewModelProvider(getActivity()).get(MainActivityViewModel.class);
+
+        List<RecipeData> recipeDataList = viewModel.getRecipeDataList();
+        RecipeAdapter recipeAdapter = new RecipeAdapter(getContext(), recipeDataList);
+
+        float w = getResources().getDimension(R.dimen.recipe_item_width);
+        int nColumns = Util.calculateNoOfColumns(getContext(), w);
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(), nColumns);
+
+        RecyclerView rvRecipes = getView().findViewById(R.id.rv_home);
+        rvRecipes.setAdapter(recipeAdapter);
+        rvRecipes.setLayoutManager(gridLayoutManager);
     }
 }

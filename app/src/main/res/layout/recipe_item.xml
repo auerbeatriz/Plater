@@ -30,24 +30,95 @@
             android:layout_height="match_parent">
 
             <ImageView
-                android:id="@+id/imageView"
-                android:layout_width="match_parent"
+                android:id="@+id/imv_recipeImage"
+                android:layout_width="wrap_content"
                 android:layout_height="0dp"
                 android:scaleType="centerCrop"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                tools:srcCompat="@drawable/img_waffle" />
+                app:srcCompat="@drawable/img_wafflefix"
+                android:contentDescription="@string/recipeImage_description"
+                />
 
             <View
-                android:id="@+id/view"
+                android:id="@+id/view_containerRecipeData"
 
                 style="@style/container_recipeData"
+                android:background="@drawable/container_recipe_data"
+                android:clickable="false"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />
+
+            <TextView
+                android:id="@+id/tv_recipeTitle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginRight="8dp"
+                android:fontFamily="sans-serif-medium"
+                android:text="@string/recipe_title"
+                android:textColor="@color/common_gray"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/view_containerRecipeData"
+                app:layout_constraintTop_toTopOf="@+id/view_containerRecipeData" />
+
+            <TextView
+                android:id="@+id/tv_recipeDescription"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginRight="8dp"
+                android:fontFamily="@font/poppins_light"
+                android:maxHeight="@dimen/recipeDescription_max_height"
+                android:text="@string/recipe_description"
+                android:textColor="@color/common_gray"
+                android:textSize="12sp"
+                app:layout_constraintEnd_toEndOf="@+id/view_containerRecipeData"
+                app:layout_constraintStart_toStartOf="@+id/view_containerRecipeData"
+                app:layout_constraintTop_toBottomOf="@+id/tv_recipeTitle" />
+
+            <TextView
+                android:id="@+id/tv_recipeUserCreator"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginRight="8dp"
+                android:drawableLeft="@drawable/ic_user_arroba"
+                android:drawableStart="@drawable/ic_user_arroba"
+                android:fontFamily="@font/poppins_light"
+                android:text="@string/user_name"
+                android:textColor="@color/medium_gray2"
+                android:textSize="12sp"
+                app:layout_constraintEnd_toStartOf="@+id/ibtn_favorite"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_recipeDescription" />
+
+            <ImageButton
+                android:id="@+id/ibtn_favorite"
+                android:layout_width="13dp"
+                android:layout_height="13dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginRight="8dp"
+                android:background="#00FFFFFF"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_recipeUserCreator"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/tv_recipeUserCreator"
+                app:srcCompat="@drawable/ic_favoritar"
+                android:contentDescription="@string/ibtn_favoritar_description"/>
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.cardview.widget.CardView>
