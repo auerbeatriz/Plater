@@ -13,5 +13,5 @@
         android:enabled="true"
         android:icon="@drawable/ic_baseline_settings_24"
         android:title="@string/config_option"
-        app:showAsAction="always" />
+        app:showAsAction="always|collapseActionView" />
 </menu>
