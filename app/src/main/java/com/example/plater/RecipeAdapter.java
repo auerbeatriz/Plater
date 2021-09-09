@@ -1,6 +1,7 @@
 package com.example.plater;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,7 +9,11 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.annotation.IntegerRes;
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
+import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.internal.VisibilityAwareImageButton;
@@ -49,6 +54,16 @@ public class RecipeAdapter extends RecyclerView.Adapter {
 
         TextView tvCreator = holder.itemView.findViewById(R.id.tv_recipeUserCreator);
         tvCreator.setText(recipeData.userName);
+
+        //quando essa foto for selecionada
+        CardView cardView = holder.itemView.findViewById(R.id.cvRecipe);
+        cardView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(holder.itemView.getContext(), RecipeDisplay.class);
+                holder.itemView.getContext().startActivity(i);
+            }
+        });
     }
 
     @Override

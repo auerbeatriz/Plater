@@ -11,13 +11,7 @@
         android:theme="@style/Theme.Plater">
         <activity android:name=".RecipeDisplay"
             android:label=""
-            android:parentActivityName=".ForgotPasswordActivity"
-            >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+            android:parentActivityName=".MainActivity" >
         </activity>
         <activity
             android:name=".ChangePasswordActivity"
@@ -34,11 +28,14 @@
         <activity
             android:name=".SigninActivity"
             android:launchMode="singleTop">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity android:name=".SignupActivity" />
         <activity android:name=".MainActivity" />
-
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
