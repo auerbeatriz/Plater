@@ -6,9 +6,11 @@ import android.graphics.Bitmap;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.annotation.DrawableRes;
 import androidx.annotation.IntegerRes;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -55,13 +57,32 @@ public class RecipeAdapter extends RecyclerView.Adapter {
         TextView tvCreator = holder.itemView.findViewById(R.id.tv_recipeUserCreator);
         tvCreator.setText(recipeData.userName);
 
-        //quando essa foto for selecionada
+        //quando a receita for selecionada
         CardView cardView = holder.itemView.findViewById(R.id.cvRecipe);
         cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(holder.itemView.getContext(), RecipeDisplay.class);
                 holder.itemView.getContext().startActivity(i);
+            }
+        });
+
+        //quando for favoritado
+        ImageButton imvButton = holder.itemView.findViewById(R.id.ibtn_favorite);
+        imvButton.setTag(R.drawable.ic_gostar_70);
+
+        imvButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Integer resource = (Integer) imvButton.getTag();
+                if(resource == R.drawable.ic_gostar_70) {
+                    imvButton.setTag(R.drawable.ic_gostado_70);
+                    imvButton.setImageResource(R.drawable.ic_gostado_70);
+                }
+                if(resource == R.drawable.ic_gostado_70) {
+                    imvButton.setTag(R.drawable.ic_gostar_70);
+                    imvButton.setImageResource(R.drawable.ic_gostar_70);
+                }
             }
         });
     }
