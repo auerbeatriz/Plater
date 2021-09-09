@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.lifecycle.ViewModelProvider;
 
 import android.os.Bundle;
 import android.view.Menu;
@@ -28,11 +29,15 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.tb_main);
         setSupportActionBar(toolbar);
 
+        MainActivityViewModel viewModel = new ViewModelProvider(this).get(MainActivityViewModel.class);
+
         //Integrando o bottomNavigationView
         bottomNavigationView = findViewById(R.id.btmNav);
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                viewModel.setBottomViewNavigationOp(item.getItemId());
+
                 switch (item.getItemId()) {
                     case R.id.homeView:
                         HomeFragment homeFragment = HomeFragment.newInstance();
@@ -50,6 +55,9 @@ public class MainActivity extends AppCompatActivity {
                 return true;
             }
         });
+
+        int bottomViewNavigationOp = viewModel.getBottomViewNavigationOp();
+        bottomNavigationView.setSelectedItemId(bottomViewNavigationOp);
     }
 
     @Override

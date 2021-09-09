@@ -7,6 +7,7 @@ import java.util.List;
 
 public class MainActivityViewModel extends ViewModel {
     List<RecipeData> recipeDataList = new ArrayList<>();
+    int bottomViewNavigationOp = R.id.homeView;
 
     public MainActivityViewModel() {
         RecipeData recipe1 = new RecipeData(R.drawable.bolinho_bacalhau, "Bolinho de bacalhau", "Nós particularmente gostamos muito de salsinha e cebolinho, então caprichamos nos temperos.", "plater_chef");
@@ -23,7 +24,16 @@ public class MainActivityViewModel extends ViewModel {
         recipeDataList.add(recipe5);
         recipeDataList.add(recipe6);
     }
+
     public List<RecipeData> getRecipeDataList() {
         return recipeDataList;
+    }
+
+    public int getBottomViewNavigationOp() {
+        return bottomViewNavigationOp;
+    }
+
+    public void setBottomViewNavigationOp(int bottomViewNavigationOp) {
+        this.bottomViewNavigationOp = bottomViewNavigationOp;
     }
 }

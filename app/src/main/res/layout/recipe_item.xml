@@ -6,6 +6,7 @@
     android:layout_height="wrap_content"
     android:layout_marginStart="8dp"
     android:layout_marginLeft="8dp"
+    android:layout_marginTop="8dp"
     android:layout_marginEnd="8dp"
     android:layout_marginRight="8dp">
 
@@ -13,12 +14,6 @@
         android:id="@+id/cvRecipe"
         android:layout_width="0dp"
         android:layout_height="@dimen/recipe_item_height"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginBottom="8dp"
         app:cardBackgroundColor="@color/white"
         app:cardCornerRadius="@dimen/cardView_corner"
         app:cardElevation="@dimen/cardView_elevation"
