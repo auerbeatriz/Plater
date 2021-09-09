@@ -61,6 +61,9 @@
     <string name="mdp4">Pegar uma colher grande da mistura e aplicar em uma máquina de waffle/frigideira.</string>
     <string name="mdp5">Espere Dourar.</string>
     <string name="mdp6">Sirva quente (você pode servir com manteiga, mel, ou geleia).</string>
+    <string name="tempo">10 Min</string>
+    <string name="rend">1 pessoa</string>
+    <string name="dono">Criado por Usuario_Plater</string>
     <!--Buttons-->
     <string name="btn_cadastrar">Cadastrar</string>
     <string name="btn_envie_email">Enviar código</string>
