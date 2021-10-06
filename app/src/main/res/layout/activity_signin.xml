@@ -32,8 +32,8 @@
                 android:layout_marginTop="64dp"
                 android:layout_marginEnd="32dp"
                 android:layout_marginRight="32dp"
-                android:drawableEnd="@drawable/ic_email"
-                android:drawableRight="@drawable/ic_email"
+                android:drawableEnd="@drawable/ic_email_arroba"
+                android:drawableRight="@drawable/ic_email_arroba"
                 android:ems="10"
                 android:hint="@string/et_email_placeholder"
                 android:inputType="textEmailAddress" />

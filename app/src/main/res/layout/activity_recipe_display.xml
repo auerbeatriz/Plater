@@ -326,9 +326,9 @@
         android:background="#00FFFFFF"
         android:scaleX="2"
         android:scaleY="2"
+        android:src="@drawable/ic_favoritar"
         app:layout_constraintBottom_toBottomOf="@+id/tb_RecipeName"
         app:layout_constraintEnd_toEndOf="@+id/tb_RecipeName"
-        app:layout_constraintTop_toTopOf="@+id/tb_RecipeName"
-        app:srcCompat="@drawable/ic_gostar_70" />
+        app:layout_constraintTop_toTopOf="@+id/tb_RecipeName" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

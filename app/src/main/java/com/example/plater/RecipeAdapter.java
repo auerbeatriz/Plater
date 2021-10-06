@@ -2,7 +2,6 @@ package com.example.plater;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,15 +9,9 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import androidx.annotation.DrawableRes;
-import androidx.annotation.IntegerRes;
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
-import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
-
-import com.google.android.material.internal.VisibilityAwareImageButton;
 
 import java.util.List;
 
@@ -69,19 +62,19 @@ public class RecipeAdapter extends RecyclerView.Adapter {
 
         //quando for favoritado
         ImageButton imvButton = holder.itemView.findViewById(R.id.ibtn_favorite);
-        imvButton.setTag(R.drawable.ic_gostar_70);
+        imvButton.setTag(R.drawable.ic_favoritar);
 
         imvButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Integer resource = (Integer) imvButton.getTag();
-                if(resource == R.drawable.ic_gostar_70) {
-                    imvButton.setTag(R.drawable.ic_gostado_70);
-                    imvButton.setImageResource(R.drawable.ic_gostado_70);
+                if(resource == R.drawable.ic_favoritar) {
+                    imvButton.setTag(R.drawable.ic_favorito);
+                    imvButton.setImageResource(R.drawable.ic_favorito);
                 }
-                if(resource == R.drawable.ic_gostado_70) {
-                    imvButton.setTag(R.drawable.ic_gostar_70);
-                    imvButton.setImageResource(R.drawable.ic_gostar_70);
+                if(resource == R.drawable.ic_favorito) {
+                    imvButton.setTag(R.drawable.ic_favoritar);
+                    imvButton.setImageResource(R.drawable.ic_favoritar);
                 }
             }
         });

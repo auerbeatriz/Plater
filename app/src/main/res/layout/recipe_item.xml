@@ -110,10 +110,9 @@
                 android:layout_marginRight="8dp"
                 android:background="#00FFFFFF"
                 android:contentDescription="@string/ibtn_favoritar_description"
+                android:src="@drawable/ic_favoritar"
                 app:layout_constraintBottom_toBottomOf="@+id/tv_recipeUserCreator"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/tv_recipeUserCreator"
-                app:srcCompat="@drawable/ic_gostar_70" />
+                app:layout_constraintEnd_toEndOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
