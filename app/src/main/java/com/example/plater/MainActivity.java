@@ -15,8 +15,6 @@ import android.view.MenuItem;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-import java.util.logging.Filter;
-
 public class MainActivity extends AppCompatActivity {
 
     BottomNavigationView bottomNavigationView;
@@ -33,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
         MainActivityViewModel viewModel = new ViewModelProvider(this).get(MainActivityViewModel.class);
 
         //Integrando o bottomNavigationView
-        bottomNavigationView = findViewById(R.id.btmNav);
+        bottomNavigationView = findViewById(R.id.bnvMain);
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -49,8 +47,8 @@ public class MainActivity extends AppCompatActivity {
                         setFragment(filterFragment);
                         break;
                     case R.id.recipeBookView:
-                        RecipeBookFragment recipeBookFragment = RecipeBookFragment.newInstance();
-                        setFragment(recipeBookFragment);
+                        Intent i = new Intent(MainActivity.this, RecipeBookActivity.class);
+                        startActivity(i);
                         break;
                 }
                 return true;

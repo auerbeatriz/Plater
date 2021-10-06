@@ -8,7 +8,7 @@ import android.os.Bundle;
 
 import android.os.Bundle;
 
-public class RecipeDisplay extends AppCompatActivity {
+public class RecipeDisplayActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
