@@ -43,6 +43,7 @@
     <string name="tv_recipe_book">Seu livro de receitas</string>
     <string name="tab_my_recipes">Minhas receitas</string>
     <string name="tab_my_favorites">Meus favoritos</string>
+    <string name="tv_filtros">Filtros</string>
 
 
     <string name="recipe_title">Waffle americano</string>

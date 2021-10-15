@@ -47,10 +47,10 @@ public class MainActivity extends AppCompatActivity {
                         setFragment(filterFragment);
                         break;
                     case R.id.recipeBookView:
-                        Intent i = new Intent(MainActivity.this, RecipeBookActivity.class);
-                        startActivity(i);
-                        //RecipeBookFragment recipeBookFragment = RecipeBookFragment.newInstance();
-                        //setFragment(recipeBookFragment);
+                        //Intent i = new Intent(MainActivity.this, RecipeBookActivity.class);
+                        //startActivity(i);
+                        RecipeBookFragment recipeBookFragment = RecipeBookFragment.newInstance();
+                        setFragment(recipeBookFragment);
                         break;
                 }
                 return true;

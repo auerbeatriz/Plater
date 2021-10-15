@@ -1,6 +1,7 @@
 package com.example.plater;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
@@ -8,12 +9,14 @@ import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -54,6 +57,21 @@ public class HomeFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+
+        //  exibindo a área de filtros
+        FilterViewModel filterViewModel = new ViewModelProvider(getActivity()).get(FilterViewModel.class);
+        List<Integer> filterIconsList = filterViewModel.getFilterIconsList();
+        List<Integer> filterIconsSelectedList = filterViewModel.getFilterIconsSelectedList();
+
+        FilterAdapter filterAdapter = new FilterAdapter(getContext(), filterIconsList, filterIconsSelectedList);
+
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
+        RecyclerView rvFilters = getView().findViewById(R.id.rv_filtersHome);
+        rvFilters.setAdapter(filterAdapter);
+        rvFilters.setLayoutManager(linearLayoutManager);
+
+
+        //  exibindo as receitas
         MainActivityViewModel viewModel = new ViewModelProvider(getActivity()).get(MainActivityViewModel.class);
 
         List<RecipeData> recipeDataList = viewModel.getRecipeDataList();
