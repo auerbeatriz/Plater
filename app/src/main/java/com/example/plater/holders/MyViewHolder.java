@@ -1,4 +1,4 @@
-package com.example.plater;
+package com.example.plater.holders;
 
 import android.view.View;
 

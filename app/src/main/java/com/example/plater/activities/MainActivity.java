@@ -1,4 +1,4 @@
-package com.example.plater;
+package com.example.plater.activities;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -7,12 +7,16 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProvider;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 
+import com.example.plater.fragments.FilterFragment;
+import com.example.plater.fragments.HomeFragment;
+import com.example.plater.models.MainActivityViewModel;
+import com.example.plater.R;
+import com.example.plater.fragments.RecipeBookFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity {

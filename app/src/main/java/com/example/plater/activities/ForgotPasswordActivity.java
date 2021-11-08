@@ -1,4 +1,4 @@
-package com.example.plater;
+package com.example.plater.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -9,6 +9,8 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
+
+import com.example.plater.R;
 
 public class ForgotPasswordActivity extends AppCompatActivity {
 

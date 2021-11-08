@@ -1,4 +1,4 @@
-package com.example.plater;
+package com.example.plater.adapters;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -6,8 +6,8 @@ import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.Lifecycle;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 
-import java.lang.reflect.Array;
-import java.util.ArrayList;
+import com.example.plater.fragments.MyFavoriteRecipesFragment;
+import com.example.plater.fragments.MyRecipesFragment;
 
 public class RBFragmentsAdapter extends FragmentStateAdapter {
 

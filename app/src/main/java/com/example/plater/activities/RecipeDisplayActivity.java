@@ -1,4 +1,4 @@
-package com.example.plater;
+package com.example.plater.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -7,6 +7,8 @@ import android.os.Bundle;
 
 
 import android.os.Bundle;
+
+import com.example.plater.R;
 
 public class RecipeDisplayActivity extends AppCompatActivity {
 

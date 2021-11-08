@@ -11,8 +11,10 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
-import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.plater.activities.RecipeDisplayActivity;
+import com.example.plater.holders.MyViewHolder;
 
 import java.util.List;
 

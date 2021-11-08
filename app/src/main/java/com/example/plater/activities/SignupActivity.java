@@ -1,4 +1,4 @@
-package com.example.plater;
+package com.example.plater.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -9,6 +9,8 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.TextView;
+
+import com.example.plater.R;
 
 public class SignupActivity extends AppCompatActivity {
 

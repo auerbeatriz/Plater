@@ -1,4 +1,4 @@
-package com.example.plater;
+package com.example.plater.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
@@ -6,6 +6,8 @@ import androidx.viewpager2.widget.ViewPager2;
 
 import android.os.Bundle;
 
+import com.example.plater.R;
+import com.example.plater.adapters.RBFragmentsAdapter;
 import com.google.android.material.tabs.TabLayout;
 
 public class RecipeBookActivity extends AppCompatActivity {

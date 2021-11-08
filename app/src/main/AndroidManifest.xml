@@ -9,25 +9,25 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Plater">
-        <activity android:name=".RecipeBookActivity"></activity>
+        <activity android:name=".activities.RecipeBookActivity"></activity>
         <activity
-            android:name=".RecipeDisplayActivity"
+            android:name=".activities.RecipeDisplayActivity"
             android:label=""
-            android:parentActivityName=".MainActivity"></activity>
+            android:parentActivityName=".activities.MainActivity"></activity>
         <activity
-            android:name=".ChangePasswordActivity"
+            android:name=".activities.ChangePasswordActivity"
             android:label="Alterar a senha"
-            android:parentActivityName=".ForgotPasswordActivity" />
+            android:parentActivityName=".activities.ForgotPasswordActivity" />
         <activity
-            android:name=".VerifyCodeActivity"
+            android:name=".activities.VerifyCodeActivity"
             android:label="Esqueceu a senha?"
-            android:parentActivityName=".ForgotPasswordActivity" />
+            android:parentActivityName=".activities.ForgotPasswordActivity" />
         <activity
-            android:name=".ForgotPasswordActivity"
+            android:name=".activities.ForgotPasswordActivity"
             android:label="Esqueceu a senha?"
-            android:parentActivityName=".SigninActivity" />
+            android:parentActivityName=".activities.SigninActivity" />
         <activity
-            android:name=".SigninActivity"
+            android:name=".activities.SigninActivity"
             android:launchMode="singleTop">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -35,8 +35,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".SignupActivity" />
-        <activity android:name=".MainActivity" />
+        <activity android:name=".activities.SignupActivity" />
+        <activity android:name=".activities.MainActivity" />
 
         <meta-data
             android:name="preloaded_fonts"

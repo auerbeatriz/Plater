@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:background="#00FFFFFF"
     android:clickable="false"
-    tools:context=".RecipeDisplayActivity">
+    tools:context=".activities.RecipeDisplayActivity">
 
 
     <com.google.android.material.imageview.ShapeableImageView

@@ -1,4 +1,4 @@
-package com.example.plater;
+package com.example.plater.fragments;
 
 import android.os.Bundle;
 
@@ -11,6 +11,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.example.plater.R;
+import com.example.plater.RecipeAdapter;
+import com.example.plater.RecipeData;
+import com.example.plater.models.MainActivityViewModel;
 
 import java.util.List;
 

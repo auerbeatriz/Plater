@@ -1,4 +1,4 @@
-package com.example.plater;
+package com.example.plater.adapters;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -8,6 +8,9 @@ import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.plater.holders.MyViewHolder;
+import com.example.plater.R;
 
 import java.util.List;
 

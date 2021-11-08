@@ -1,11 +1,8 @@
-package com.example.plater;
+package com.example.plater.fragments;
 
-import android.content.Intent;
-import android.graphics.Bitmap;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
-import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -16,7 +13,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import java.util.ArrayList;
+import com.example.plater.R;
+import com.example.plater.RecipeAdapter;
+import com.example.plater.RecipeData;
+import com.example.plater.adapters.FilterAdapter;
+import com.example.plater.models.FilterViewModel;
+import com.example.plater.models.MainActivityViewModel;
+
 import java.util.List;
 
 /**

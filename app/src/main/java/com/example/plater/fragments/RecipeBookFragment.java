@@ -1,20 +1,21 @@
-package com.example.plater;
+package com.example.plater.fragments;
 
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.viewpager2.widget.ViewPager2;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.google.android.material.tabs.TabLayout;
+import com.example.plater.R;
+import com.example.plater.RecipeAdapter;
+import com.example.plater.RecipeData;
+import com.example.plater.models.RecipeBookViewModel;
 
 import java.util.List;
 

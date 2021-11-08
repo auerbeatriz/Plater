@@ -1,6 +1,8 @@
-package com.example.plater;
+package com.example.plater.models;
 
 import androidx.lifecycle.ViewModel;
+
+import com.example.plater.R;
 
 import java.util.ArrayList;
 import java.util.HashMap;
