@@ -1,5 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Users/Lilian/StudioProjects/Plater/app/src/main/res/layout/activity_signin.xml" value="0.19655797101449277" />
+        <entry key="..\:/Users/Lilian/StudioProjects/Plater/app/src/main/res/layout/activity_signup.xml" value="0.192481884057971" />
+      </map>
+    </option>
+  </component>
   <component name="ProjectPlainTextFileTypeManager">
     <file url="file://$PROJECT_DIR$/app/src/main/res/drawable/ic_senha.xml" />
   </component>

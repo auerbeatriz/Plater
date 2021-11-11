@@ -1,7 +1,12 @@
-package com.example.plater;
+package com.example.plater.utils;
 
 import android.content.Context;
 import android.util.DisplayMetrics;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 
 public class Util {
 
@@ -19,5 +24,18 @@ public class Util {
         float screenWidthDp = displayMetrics.widthPixels;
         int noOfColumns = (int) (screenWidthDp / columnWidthDp + 0.5); // +0.5 for correct rounding to int.
         return noOfColumns;
+    }
+
+    // Converte um IS para uma string
+    public static String inputStream2String(InputStream is, String charset) throws IOException {
+        BufferedReader reader = new BufferedReader(new InputStreamReader(
+                is, charset), 8);
+        StringBuilder sb = new StringBuilder();
+        String line = null;
+        while ((line = reader.readLine()) != null) {
+            sb.append(line + "\n");
+        }
+        is.close();
+        return sb.toString();
     }
 }

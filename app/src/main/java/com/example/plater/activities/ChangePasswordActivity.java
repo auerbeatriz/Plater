@@ -35,7 +35,7 @@ public class ChangePasswordActivity extends AppCompatActivity {
         btnAlterarSenha.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(ChangePasswordActivity.this, SigninActivity.class);
+                Intent i = new Intent(ChangePasswordActivity.this, LoginActivity.class);
                 startActivity(i);
             }
         });

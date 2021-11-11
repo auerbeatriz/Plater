@@ -61,7 +61,7 @@ public class HomeFragment extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        //  exibindo a área de filtros
+        //  exibindo a área de filtros -> aqui pegamos as listas de filtros disponiveis
         FilterViewModel filterViewModel = new ViewModelProvider(getActivity()).get(FilterViewModel.class);
         List<Integer> filterIconsList = filterViewModel.getFilterIconsList();
         List<Integer> filterIconsSelectedList = filterViewModel.getFilterIconsSelectedList();

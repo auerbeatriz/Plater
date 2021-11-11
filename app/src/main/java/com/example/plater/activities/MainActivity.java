@@ -7,16 +7,19 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProvider;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.example.plater.fragments.FilterFragment;
 import com.example.plater.fragments.HomeFragment;
 import com.example.plater.models.MainActivityViewModel;
 import com.example.plater.R;
 import com.example.plater.fragments.RecipeBookFragment;
+import com.example.plater.utils.Config;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity {
@@ -26,43 +29,51 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
 
-        //Integrando a nova toolbar com a activity
-        Toolbar toolbar = findViewById(R.id.tb_main);
-        setSupportActionBar(toolbar);
+        if(Config.getLogin(MainActivity.this).isEmpty()) {
+            Intent i = new Intent(MainActivity.this, LoginActivity.class);
+            startActivity(i);
+            finish();
+        }
+        else {
+            setContentView(R.layout.activity_main);
 
-        MainActivityViewModel viewModel = new ViewModelProvider(this).get(MainActivityViewModel.class);
+            //Integrando a nova toolbar com a activity
+            Toolbar toolbar = findViewById(R.id.tb_main);
+            setSupportActionBar(toolbar);
 
-        //Integrando o bottomNavigationView
-        bottomNavigationView = findViewById(R.id.bnvMain);
-        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                viewModel.setBottomViewNavigationOp(item.getItemId());
+            MainActivityViewModel viewModel = new ViewModelProvider(this).get(MainActivityViewModel.class);
 
-                switch (item.getItemId()) {
-                    case R.id.homeView:
-                        HomeFragment homeFragment = HomeFragment.newInstance();
-                        setFragment(homeFragment);
-                        break;
-                    case R.id.filterView:
-                        FilterFragment filterFragment = FilterFragment.newInstance();
-                        setFragment(filterFragment);
-                        break;
-                    case R.id.recipeBookView:
-                        //Intent i = new Intent(MainActivity.this, RecipeBookActivity.class);
-                        //startActivity(i);
-                        RecipeBookFragment recipeBookFragment = RecipeBookFragment.newInstance();
-                        setFragment(recipeBookFragment);
-                        break;
+            //Integrando o bottomNavigationView
+            bottomNavigationView = findViewById(R.id.bnvMain);
+            bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+                @Override
+                public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                    viewModel.setBottomViewNavigationOp(item.getItemId());
+
+                    switch (item.getItemId()) {
+                        case R.id.homeView:
+                            HomeFragment homeFragment = HomeFragment.newInstance();
+                            setFragment(homeFragment);
+                            break;
+                        case R.id.filterView:
+                            FilterFragment filterFragment = FilterFragment.newInstance();
+                            setFragment(filterFragment);
+                            break;
+                        case R.id.recipeBookView:
+                            //Intent i = new Intent(MainActivity.this, RecipeBookActivity.class);
+                            //startActivity(i);
+                            RecipeBookFragment recipeBookFragment = RecipeBookFragment.newInstance();
+                            setFragment(recipeBookFragment);
+                            break;
+                    }
+                    return true;
                 }
-                return true;
-            }
-        });
+            });
 
-        int bottomViewNavigationOp = viewModel.getBottomViewNavigationOp();
-        bottomNavigationView.setSelectedItemId(bottomViewNavigationOp);
+            int bottomViewNavigationOp = viewModel.getBottomViewNavigationOp();
+            bottomNavigationView.setSelectedItemId(bottomViewNavigationOp);
+        }
     }
 
     @Override
