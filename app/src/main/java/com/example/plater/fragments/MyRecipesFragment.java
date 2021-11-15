@@ -14,7 +14,7 @@ import android.view.ViewGroup;
 
 import com.example.plater.R;
 import com.example.plater.RecipeAdapter;
-import com.example.plater.RecipeData;
+import com.example.plater.Recipe;
 import com.example.plater.models.MainActivityViewModel;
 
 import java.util.List;
@@ -59,8 +59,8 @@ public class MyRecipesFragment extends Fragment {
 
         MainActivityViewModel viewModel = new ViewModelProvider(getActivity()).get(MainActivityViewModel.class);
 
-        List<RecipeData> recipeDataList = viewModel.getRecipeDataList();
-        RecipeAdapter recipeAdapter = new RecipeAdapter(getContext(), recipeDataList);
+        List<Recipe> recipeList = (List<Recipe>) viewModel.getRecipeList();
+        RecipeAdapter recipeAdapter = new RecipeAdapter(getContext(), recipeList);
 
         float w = getResources().getDimension(R.dimen.recipe_item_width);
         GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(), 2);

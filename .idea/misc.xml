@@ -3,8 +3,16 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/Lilian/StudioProjects/Plater/app/src/main/res/drawable/container_recipe_data.xml" value="0.21302083333333333" />
+        <entry key="..\:/Users/Lilian/StudioProjects/Plater/app/src/main/res/drawable/container_recipe_details.xml" value="0.21302083333333333" />
+        <entry key="..\:/Users/Lilian/StudioProjects/Plater/app/src/main/res/drawable/et_form.xml" value="0.21302083333333333" />
+        <entry key="..\:/Users/Lilian/StudioProjects/Plater/app/src/main/res/layout-land/activity_recipe_display.xml" value="0.25" />
+        <entry key="..\:/Users/Lilian/StudioProjects/Plater/app/src/main/res/layout/activity_recipe_display.xml" value="0.33" />
         <entry key="..\:/Users/Lilian/StudioProjects/Plater/app/src/main/res/layout/activity_signin.xml" value="0.19655797101449277" />
         <entry key="..\:/Users/Lilian/StudioProjects/Plater/app/src/main/res/layout/activity_signup.xml" value="0.192481884057971" />
+        <entry key="..\:/Users/Lilian/StudioProjects/Plater/app/src/main/res/layout/ingredient_item.xml" value="0.25" />
+        <entry key="..\:/Users/Lilian/StudioProjects/Plater/app/src/main/res/layout/recipe_item.xml" value="0.196875" />
+        <entry key="..\:/Users/Lilian/StudioProjects/Plater/app/src/main/res/layout/tutorial_item.xml" value="0.33" />
       </map>
     </option>
   </component>

@@ -21,11 +21,11 @@ import java.util.List;
 public class RecipeAdapter extends RecyclerView.Adapter {
 
     Context context;
-    List<RecipeData> recipeDataList;
+    List<Recipe> recipeList;
 
-    public RecipeAdapter(Context context, List<RecipeData> recipeDataList) {
+    public RecipeAdapter(Context context, List<Recipe> recipeList) {
         this.context = context;
-        this.recipeDataList = recipeDataList;
+        this.recipeList = recipeList;
     }
 
 
@@ -39,27 +39,28 @@ public class RecipeAdapter extends RecyclerView.Adapter {
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
-        RecipeData recipeData = recipeDataList.get(position);
+        Recipe recipe = recipeList.get(position);
 
         ImageView imageView = holder.itemView.findViewById(R.id.imv_recipeImage);
-        imageView.setImageResource(recipeData.image);
+        imageView.setImageResource(recipe.getImage());
 
         TextView tvTitle = holder.itemView.findViewById(R.id.tv_recipeTitle);
-        tvTitle.setText(recipeData.title);
+        tvTitle.setText(recipe.getTitulo());
 
         TextView tvDescription = holder.itemView.findViewById(R.id.tv_recipeDescription);
-        tvDescription.setText(recipeData.description);
+        tvDescription.setText(recipe.getDescricao());
 
         TextView tvCreator = holder.itemView.findViewById(R.id.tv_recipeUserCreator);
-        tvCreator.setText(recipeData.userName);
+        tvCreator.setText(recipe.getUserName());
 
         //quando a receita for selecionada
         CardView cardView = holder.itemView.findViewById(R.id.cvRecipe);
         cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(holder.itemView.getContext(), RecipeDisplayActivity.class);
-                holder.itemView.getContext().startActivity(i);
+                Intent i = new Intent(context, RecipeDisplayActivity.class);
+                i.putExtra("recipe", recipe);
+                context.startActivity(i);
             }
         });
 
@@ -85,6 +86,6 @@ public class RecipeAdapter extends RecyclerView.Adapter {
 
     @Override
     public int getItemCount() {
-        return this.recipeDataList.size();
+        return this.recipeList.size();
     }
 }

@@ -112,6 +112,12 @@ public class LoginActivity extends AppCompatActivity {
                             }
                         } catch (IOException | JSONException e) {
                             e.printStackTrace();
+                            runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    Toast.makeText(LoginActivity.this, (CharSequence) e, Toast.LENGTH_LONG).show();
+                                }
+                            });
                         }
                     }
                     });

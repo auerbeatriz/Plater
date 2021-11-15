@@ -4,6 +4,8 @@ import android.os.Bundle;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -15,7 +17,7 @@ import android.view.ViewGroup;
 
 import com.example.plater.R;
 import com.example.plater.RecipeAdapter;
-import com.example.plater.RecipeData;
+import com.example.plater.Recipe;
 import com.example.plater.adapters.FilterAdapter;
 import com.example.plater.models.FilterViewModel;
 import com.example.plater.models.MainActivityViewModel;
@@ -39,7 +41,6 @@ public class HomeFragment extends Fragment {
      *
      * @return A new instance of fragment HomeFragment.
      */
-    // TODO: Rename and change types and number of parameters
     public static HomeFragment newInstance() {
         HomeFragment fragment = new HomeFragment();
         return fragment;
@@ -65,26 +66,31 @@ public class HomeFragment extends Fragment {
         FilterViewModel filterViewModel = new ViewModelProvider(getActivity()).get(FilterViewModel.class);
         List<Integer> filterIconsList = filterViewModel.getFilterIconsList();
         List<Integer> filterIconsSelectedList = filterViewModel.getFilterIconsSelectedList();
-
         FilterAdapter filterAdapter = new FilterAdapter(getContext(), filterIconsList, filterIconsSelectedList);
 
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
+        //  setando recyclerview de filtros
         RecyclerView rvFilters = getView().findViewById(R.id.rv_filtersHome);
-        rvFilters.setAdapter(filterAdapter);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
         rvFilters.setLayoutManager(linearLayoutManager);
+        rvFilters.setAdapter(filterAdapter);
 
-
-        //  exibindo as receitas
-        MainActivityViewModel viewModel = new ViewModelProvider(getActivity()).get(MainActivityViewModel.class);
-
-        List<RecipeData> recipeDataList = viewModel.getRecipeDataList();
-        RecipeAdapter recipeAdapter = new RecipeAdapter(getContext(), recipeDataList);
-
+        //  setando o recyclerview de receitas
         float w = getResources().getDimension(R.dimen.recipe_item_width);
         GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(), 2);
 
         RecyclerView rvRecipes = getView().findViewById(R.id.rv_home);
-        rvRecipes.setAdapter(recipeAdapter);
         rvRecipes.setLayoutManager(gridLayoutManager);
+
+        //  exibindo as receitas
+            //  pegar as receitas deve estar em MainViewModel
+        MainActivityViewModel viewModel = new ViewModelProvider(getActivity()).get(MainActivityViewModel.class);
+        LiveData<List<Recipe>> recipeList = viewModel.getRecipeList();
+        recipeList.observe(getViewLifecycleOwner(), new Observer<List<Recipe>>() {
+            @Override
+            public void onChanged(List<Recipe> recipes) {
+                RecipeAdapter recipeAdapter = new RecipeAdapter(getContext(), recipes);
+                rvRecipes.setAdapter(recipeAdapter);
+            }
+        });
     }
 }
