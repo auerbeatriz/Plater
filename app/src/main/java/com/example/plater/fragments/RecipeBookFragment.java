@@ -4,6 +4,8 @@ import android.os.Bundle;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -16,6 +18,8 @@ import com.example.plater.R;
 import com.example.plater.RecipeAdapter;
 import com.example.plater.Recipe;
 import com.example.plater.models.RecipeBookViewModel;
+import com.example.plater.models.RecipeDisplayViewModel;
+import com.example.plater.utils.Config;
 
 import java.util.List;
 
@@ -56,16 +60,24 @@ public class RecipeBookFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        RecipeBookViewModel viewModel = new ViewModelProvider(getActivity()).get(RecipeBookViewModel.class);
-
-        List<Recipe> recipeList = viewModel.getRecipeList();
-        RecipeAdapter recipeAdapter = new RecipeAdapter(getContext(), recipeList);
 
         float w = getResources().getDimension(R.dimen.recipe_item_width);
         GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(), 2);
 
         RecyclerView rvRecipes = getView().findViewById(R.id.rvRecipeBook);
         rvRecipes.setLayoutManager(gridLayoutManager);
-        rvRecipes.setAdapter(recipeAdapter);
+
+        final String username = Config.getLogin(getActivity());
+        final String senha = Config.getPassword(getActivity());
+        RecipeBookViewModel viewModel = new ViewModelProvider(getActivity(), new RecipeBookViewModel.RecipeBookViewModelFactory(username, senha)).get(RecipeBookViewModel.class);
+        LiveData<List<Recipe>> favoriteRecipesList = viewModel.getFavoriteRecipes();
+        favoriteRecipesList.observe(getViewLifecycleOwner(), new Observer<List<Recipe>>() {
+            @Override
+            public void onChanged(List<Recipe> recipes) {
+                RecipeAdapter recipeAdapter = new RecipeAdapter(getContext(), recipes);
+                rvRecipes.setAdapter(recipeAdapter);
+            }
+        });
+
     }
 }

@@ -52,9 +52,9 @@ public class LoginActivity extends AppCompatActivity {
 
                 //  obtendo dados passados para login
                 EditText et_email_login = findViewById(R.id.et_email_login);
-                final String email = et_email_login.getText().toString();
-                if(email.isEmpty()) {
-                    Toast.makeText(LoginActivity.this, "Email não informado", Toast.LENGTH_LONG).show();
+                final String username = et_email_login.getText().toString();
+                if(username.isEmpty()) {
+                    Toast.makeText(LoginActivity.this, "Username não informado", Toast.LENGTH_LONG).show();
                     view.setEnabled(true);
                     return;
                 }
@@ -73,7 +73,7 @@ public class LoginActivity extends AppCompatActivity {
                     @Override
                     public void run() {
                         HttpRequest httpRequest = new HttpRequest(Config.SERVER_URL_BASE + "login.php", "POST", "UTF-8");
-                        httpRequest.setBasicAuth(email, senha);
+                        httpRequest.setBasicAuth(username, senha);
 
                         try {
                             InputStream is = httpRequest.execute();
@@ -92,7 +92,7 @@ public class LoginActivity extends AppCompatActivity {
                                 runOnUiThread(new Runnable() {
                                     @Override
                                     public void run() {
-                                        Config.setLogin(LoginActivity.this, email);
+                                        Config.setLogin(LoginActivity.this, username);
                                         Config.setPassword(LoginActivity.this, senha);
                                         Intent i = new Intent(LoginActivity.this, MainActivity.class);
                                         startActivity(i);

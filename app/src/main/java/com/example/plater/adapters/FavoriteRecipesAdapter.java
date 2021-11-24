@@ -1,4 +1,4 @@
-package com.example.plater;
+package com.example.plater.adapters;
 
 import android.content.Context;
 import android.content.Intent;
@@ -12,21 +12,22 @@ import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.plater.R;
+import com.example.plater.Recipe;
 import com.example.plater.activities.RecipeDisplayActivity;
 import com.example.plater.holders.MyViewHolder;
 
 import java.util.List;
 
-public class RecipeAdapter extends RecyclerView.Adapter {
+public class FavoriteRecipesAdapter extends RecyclerView.Adapter{
 
     Context context;
-    List<Recipe> recipeList;
+    List<Recipe> favoriteRecipes;
 
-    public RecipeAdapter(Context context, List<Recipe> recipeList) {
+    public FavoriteRecipesAdapter(Context context, List<Recipe> favoriteRecipes) {
         this.context = context;
-        this.recipeList = recipeList;
+        this.favoriteRecipes = favoriteRecipes;
     }
-
 
     @NonNull
     @Override
@@ -38,7 +39,7 @@ public class RecipeAdapter extends RecyclerView.Adapter {
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
-        Recipe recipe = recipeList.get(position);
+        Recipe recipe = favoriteRecipes.get(position);
 
         ImageView imageView = holder.itemView.findViewById(R.id.imvRecipeImage);
         imageView.setImageResource(recipe.getImage());
@@ -66,6 +67,6 @@ public class RecipeAdapter extends RecyclerView.Adapter {
 
     @Override
     public int getItemCount() {
-        return this.recipeList.size();
+        return favoriteRecipes.size();
     }
 }

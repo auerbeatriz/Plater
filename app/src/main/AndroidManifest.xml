@@ -13,7 +13,6 @@
         android:theme="@style/Theme.Plater"
         android:usesCleartextTraffic="true">
 
-        <activity android:name=".activities.RecipeBookActivity"></activity>
         <activity
             android:name=".activities.RecipeDisplayActivity"
             android:label=""

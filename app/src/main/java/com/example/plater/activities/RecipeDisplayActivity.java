@@ -16,7 +16,10 @@ import android.os.Bundle;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.plater.Ingrediente;
 import com.example.plater.PassoPreparo;
@@ -26,8 +29,18 @@ import com.example.plater.adapters.IngredientsAdapter;
 import com.example.plater.adapters.PassoPreparoAdapter;
 import com.example.plater.models.MainActivityViewModel;
 import com.example.plater.models.RecipeDisplayViewModel;
+import com.example.plater.utils.Config;
+import com.example.plater.utils.HttpRequest;
+import com.example.plater.utils.Util;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.List;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 public class RecipeDisplayActivity extends AppCompatActivity {
 
@@ -39,6 +52,41 @@ public class RecipeDisplayActivity extends AppCompatActivity {
         //  obtendo qual foi a receita selecionada
         Intent i = getIntent();
         Recipe recipe = (Recipe) i.getSerializableExtra("recipe");
+
+        final String username = Config.getLogin(RecipeDisplayActivity.this);
+        final String senha = Config.getPassword(RecipeDisplayActivity.this);
+
+        ImageView btnFavoritar = findViewById(R.id.btnFavoritar);
+        btnFavoritar.setTag(R.drawable.ic_favoritar);
+
+        ExecutorService executorService = Executors.newSingleThreadExecutor();
+        executorService.execute(new Runnable() {
+            @Override
+            public void run() {
+                HttpRequest httpRequest = new HttpRequest(Config.SERVER_URL_BASE + "verifica_se_receita_favorita.php", "POST", "UTF-8");
+                httpRequest.setBasicAuth(username, senha);
+                httpRequest.addParam("id_receita", recipe.getId());
+                try {
+                    InputStream is = httpRequest.execute();
+                    String result = Util.inputStream2String(is, "UTF-8");
+                    httpRequest.finish();
+
+                    JSONObject jsonObject = new JSONObject(result);
+                    final int success = jsonObject.getInt("success");
+                    if(success == 1) {
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                btnFavoritar.setTag(R.drawable.ic_favorito);
+                                btnFavoritar.setImageResource(R.drawable.ic_favorito);
+                            }
+                        });
+                    }
+                } catch (IOException | JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
 
         /* elementos de interface */
 
@@ -95,5 +143,93 @@ public class RecipeDisplayActivity extends AppCompatActivity {
 
         TextView tvDescription = findViewById(R.id.tvDescription);
         tvDescription.setText(recipe.getDescricao());
+
+        btnFavoritar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Integer resource = (Integer) btnFavoritar.getTag();
+                if(resource == R.drawable.ic_favoritar) {
+                    executorService.execute(new Runnable() {
+                        @Override
+                        public void run() {
+                            HttpRequest httpRequest = new HttpRequest(Config.SERVER_URL_BASE + "favorita_desfavorita.php", "POST", "UTF-8");
+                            httpRequest.setBasicAuth(username, senha);
+                            httpRequest.addParam("opcao", "1");
+                            httpRequest.addParam("id_receita", recipe.getId());
+                            try {
+                                InputStream is = httpRequest.execute();
+                                String result = Util.inputStream2String(is, "UTF-8");
+                                httpRequest.finish();
+
+                                JSONObject jsonObject = new JSONObject(result);
+                                final int success = jsonObject.getInt("success");
+                                if(success == 1) {
+                                    runOnUiThread(new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            btnFavoritar.setTag(R.drawable.ic_favorito);
+                                            btnFavoritar.setImageResource(R.drawable.ic_favorito);
+                                        }
+                                    });
+                                }
+                                else {
+                                    final String message = jsonObject.getString("message");
+                                    runOnUiThread(new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            Toast.makeText(RecipeDisplayActivity.this, message, Toast.LENGTH_LONG);
+
+                                        }
+                                    });
+                                }
+                            } catch (IOException | JSONException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    });
+                }
+                if(resource == R.drawable.ic_favorito) {
+                    executorService.execute(new Runnable() {
+                        @Override
+                        public void run() {
+                            HttpRequest httpRequest = new HttpRequest(Config.SERVER_URL_BASE + "favorita_desfavorita.php", "POST", "UTF-8");
+                            httpRequest.setBasicAuth(username, senha);
+                            httpRequest.addParam("opcao", "0");
+                            httpRequest.addParam("id_receita", recipe.getId());
+                            try {
+                                InputStream is = httpRequest.execute();
+                                String result = Util.inputStream2String(is, "UTF-8");
+                                httpRequest.finish();
+
+                                JSONObject jsonObject = new JSONObject(result);
+                                final int success = jsonObject.getInt("success");
+                                if(success == 1) {
+                                    runOnUiThread(new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            btnFavoritar.setTag(R.drawable.ic_favoritar);
+                                            btnFavoritar.setImageResource(R.drawable.ic_favoritar);
+                                        }
+                                    });
+                                }
+                                else {
+                                    final String message = jsonObject.getString("message");
+                                    runOnUiThread(new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            Toast.makeText(RecipeDisplayActivity.this, message, Toast.LENGTH_LONG);
+
+                                        }
+                                    });
+                                }
+                            } catch (IOException | JSONException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    });
+                }
+            }
+        });
+
     }
 }

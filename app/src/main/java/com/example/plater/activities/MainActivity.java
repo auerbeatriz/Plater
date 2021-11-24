@@ -12,9 +12,8 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.widget.Toast;
 
-import com.example.plater.fragments.FilterFragment;
+import com.example.plater.fragments.CategoriesFragment;
 import com.example.plater.fragments.HomeFragment;
 import com.example.plater.models.MainActivityViewModel;
 import com.example.plater.R;
@@ -57,8 +56,8 @@ public class MainActivity extends AppCompatActivity {
                             setFragment(homeFragment);
                             break;
                         case R.id.filterView:
-                            FilterFragment filterFragment = FilterFragment.newInstance();
-                            setFragment(filterFragment);
+                            CategoriesFragment categoriesFragment = CategoriesFragment.newInstance();
+                            setFragment(categoriesFragment);
                             break;
                         case R.id.recipeBookView:
                             //Intent i = new Intent(MainActivity.this, RecipeBookActivity.class);

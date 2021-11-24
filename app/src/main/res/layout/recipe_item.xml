@@ -28,7 +28,7 @@
             android:layout_height="match_parent">
 
             <ImageView
-                android:id="@+id/imv_recipeImage"
+                android:id="@+id/imvRecipeImage"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:contentDescription="@string/recipeImage_description"
@@ -40,7 +40,7 @@
                 app:srcCompat="@drawable/img_wafflefix" />
 
             <View
-                android:id="@+id/view_containerRecipeData"
+                android:id="@+id/containerRecipeData"
 
                 style="@style/container_recipeData"
                 android:background="@drawable/container_recipe_data"
@@ -50,7 +50,7 @@
                 app:layout_constraintStart_toStartOf="parent" />
 
             <TextView
-                android:id="@+id/tv_recipeTitle"
+                android:id="@+id/tvRecipeTitle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
@@ -62,11 +62,11 @@
                 android:textColor="@color/common_gray"
                 android:textSize="16sp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="@+id/view_containerRecipeData"
-                app:layout_constraintTop_toTopOf="@+id/view_containerRecipeData" />
+                app:layout_constraintStart_toStartOf="@+id/containerRecipeData"
+                app:layout_constraintTop_toTopOf="@+id/containerRecipeData" />
 
             <TextView
-                android:id="@+id/tv_recipeDescription"
+                android:id="@+id/tvRecipeDescription"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:layout_marginStart="8dp"
@@ -79,13 +79,13 @@
                 android:maxHeight="@dimen/recipeDescription_max_height"
                 android:textColor="@color/common_gray"
                 android:textSize="12sp"
-                app:layout_constraintBottom_toTopOf="@+id/tv_recipeUserCreator"
-                app:layout_constraintEnd_toEndOf="@+id/view_containerRecipeData"
-                app:layout_constraintStart_toStartOf="@+id/view_containerRecipeData"
-                app:layout_constraintTop_toBottomOf="@+id/tv_recipeTitle" />
+                app:layout_constraintBottom_toTopOf="@+id/tvRecipeUserCreator"
+                app:layout_constraintEnd_toEndOf="@+id/containerRecipeData"
+                app:layout_constraintStart_toStartOf="@+id/containerRecipeData"
+                app:layout_constraintTop_toBottomOf="@+id/tvRecipeTitle" />
 
             <TextView
-                android:id="@+id/tv_recipeUserCreator"
+                android:id="@+id/tvRecipeUserCreator"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
@@ -99,20 +99,8 @@
                 android:textColor="@color/medium_gray2"
                 android:textSize="12sp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/ibtn_favorite"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />
-
-            <ImageButton
-                android:id="@+id/ibtn_favorite"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="8dp"
-                android:layout_marginRight="8dp"
-                android:background="#00FFFFFF"
-                android:contentDescription="@string/ibtn_favoritar_description"
-                android:src="@drawable/ic_favoritar"
-                app:layout_constraintBottom_toBottomOf="@+id/tv_recipeUserCreator"
-                app:layout_constraintEnd_toEndOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
