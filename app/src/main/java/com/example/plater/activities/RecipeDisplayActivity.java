@@ -1,7 +1,5 @@
 package com.example.plater.activities;
 
-import static java.lang.Integer.parseInt;
-
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.lifecycle.LiveData;
@@ -13,9 +11,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 
-
-import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -27,7 +22,6 @@ import com.example.plater.R;
 import com.example.plater.Recipe;
 import com.example.plater.adapters.IngredientsAdapter;
 import com.example.plater.adapters.PassoPreparoAdapter;
-import com.example.plater.models.MainActivityViewModel;
 import com.example.plater.models.RecipeDisplayViewModel;
 import com.example.plater.utils.Config;
 import com.example.plater.utils.HttpRequest;
@@ -65,7 +59,7 @@ public class RecipeDisplayActivity extends AppCompatActivity {
             public void run() {
                 HttpRequest httpRequest = new HttpRequest(Config.SERVER_URL_BASE + "verifica_se_receita_favorita.php", "POST", "UTF-8");
                 httpRequest.setBasicAuth(username, senha);
-                httpRequest.addParam("id_receita", recipe.getId());
+                httpRequest.addParam("id_receita", String.valueOf(recipe.getId()));
                 try {
                     InputStream is = httpRequest.execute();
                     String result = Util.inputStream2String(is, "UTF-8");
@@ -109,7 +103,7 @@ public class RecipeDisplayActivity extends AppCompatActivity {
 
         //  preenchendo os dados da entidade INGREDIENTE
         //  ontendo viewmodel
-        RecipeDisplayViewModel recipeDisplayViewModel = new ViewModelProvider(this, new RecipeDisplayViewModel.RecipeDisplayViewModelFactory(recipe.getId())).get(RecipeDisplayViewModel.class);
+        RecipeDisplayViewModel recipeDisplayViewModel = new ViewModelProvider(this, new RecipeDisplayViewModel.RecipeDisplayViewModelFactory(this.getApplication(),recipe.getId())).get(RecipeDisplayViewModel.class);
 
         LiveData<List<Ingrediente>> ingredientes = recipeDisplayViewModel.getIngredients();
         ingredientes.observe(this, new Observer<List<Ingrediente>>() {
@@ -155,7 +149,7 @@ public class RecipeDisplayActivity extends AppCompatActivity {
                             HttpRequest httpRequest = new HttpRequest(Config.SERVER_URL_BASE + "favorita_desfavorita.php", "POST", "UTF-8");
                             httpRequest.setBasicAuth(username, senha);
                             httpRequest.addParam("opcao", "1");
-                            httpRequest.addParam("id_receita", recipe.getId());
+                            httpRequest.addParam("id_receita", String.valueOf(recipe.getId()));
                             try {
                                 InputStream is = httpRequest.execute();
                                 String result = Util.inputStream2String(is, "UTF-8");
@@ -177,8 +171,7 @@ public class RecipeDisplayActivity extends AppCompatActivity {
                                     runOnUiThread(new Runnable() {
                                         @Override
                                         public void run() {
-                                            Toast.makeText(RecipeDisplayActivity.this, message, Toast.LENGTH_LONG);
-
+                                            Toast.makeText(RecipeDisplayActivity.this, message, Toast.LENGTH_LONG).show();
                                         }
                                     });
                                 }
@@ -195,7 +188,7 @@ public class RecipeDisplayActivity extends AppCompatActivity {
                             HttpRequest httpRequest = new HttpRequest(Config.SERVER_URL_BASE + "favorita_desfavorita.php", "POST", "UTF-8");
                             httpRequest.setBasicAuth(username, senha);
                             httpRequest.addParam("opcao", "0");
-                            httpRequest.addParam("id_receita", recipe.getId());
+                            httpRequest.addParam("id_receita", String.valueOf(recipe.getId()));
                             try {
                                 InputStream is = httpRequest.execute();
                                 String result = Util.inputStream2String(is, "UTF-8");
@@ -217,7 +210,7 @@ public class RecipeDisplayActivity extends AppCompatActivity {
                                     runOnUiThread(new Runnable() {
                                         @Override
                                         public void run() {
-                                            Toast.makeText(RecipeDisplayActivity.this, message, Toast.LENGTH_LONG);
+                                            Toast.makeText(RecipeDisplayActivity.this, message, Toast.LENGTH_LONG).show();
 
                                         }
                                     });

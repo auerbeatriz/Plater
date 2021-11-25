@@ -2,9 +2,11 @@ package com.example.plater.models;
 
 import static java.lang.Integer.parseInt;
 
+import android.app.Application;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
+import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
@@ -16,6 +18,7 @@ import com.example.plater.activities.MainActivity;
 import com.example.plater.fragments.RecipeBookFragment;
 import com.example.plater.utils.Config;
 import com.example.plater.utils.HttpRequest;
+import com.example.plater.utils.MyDB;
 import com.example.plater.utils.Util;
 
 import org.json.JSONArray;
@@ -29,15 +32,19 @@ import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-public class RecipeBookViewModel extends ViewModel {
+public class RecipeBookViewModel extends AndroidViewModel {
 
     MutableLiveData<List<Recipe>> favoriteRecipesList;
     String username;
     String senha;
+    MyDB db;
 
-    public RecipeBookViewModel(String username, String senha) {
-        this.username = username;
-        this.senha = senha;
+    public RecipeBookViewModel(@NonNull Application application) {
+        super(application);
+        db = MyDB.getDatabase(application);
+
+        this.username = Config.getLogin(application);
+        this.senha = Config.getPassword(application);
     }
 
     public LiveData<List<Recipe>> getFavoriteRecipes() {
@@ -73,15 +80,9 @@ public class RecipeBookViewModel extends ViewModel {
                             JSONObject jRecipe = jsonArray.getJSONObject(i);
 
                             //TODO: AJUSTAR ESSA LISTA PARA RECEBER A MILTIMIDIA
-                            String id = jRecipe.getString("id_receita");
-                            String titulo = jRecipe.getString("titulo_receita");
-                            String descricao = jRecipe.getString("descricao_receita");
-                            String tempoPreparo = jRecipe.getString("tempo_preparo");
-                            int rendimento = parseInt(jRecipe.getString("rendimento"));
-                            String tipoRendimento = jRecipe.getString("tipo_rendimento");
-                            String categoria = jRecipe.getString("categoria");
+                            int id = parseInt(jRecipe.getString("id_receita"));
 
-                            Recipe recipe = new Recipe(id, titulo, descricao, tempoPreparo, rendimento, tipoRendimento, categoria);
+                            Recipe recipe = db.myDao().getRecipe(id);
                             favoriteRecipes.add(recipe);
                         }
                         //  avisa a products que a lista de produtos mudou
@@ -98,20 +99,4 @@ public class RecipeBookViewModel extends ViewModel {
         loadFavoriteRecipes();
     }
 
-    //  Como o ViewModelProvider é incapaz de construir classes que aceitam parâmetros, temos que ensinar ele a fazer isso
-    static public class RecipeBookViewModelFactory implements ViewModelProvider.Factory {
-        String username;
-        String senha;
-
-        public RecipeBookViewModelFactory(String username, String senha) {
-            this.username = username;
-            this.senha = senha;
-        }
-
-        @NonNull
-        @Override
-        public <T extends ViewModel> T create(@NonNull Class<T> modelClass) {
-            return (T) new RecipeBookViewModel(username, senha);
-        }
-    }
 }

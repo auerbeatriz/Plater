@@ -2,16 +2,21 @@ package com.example.plater.models;
 
 import static java.lang.Integer.parseInt;
 
+import android.app.Application;
 import android.util.Log;
 
+import androidx.annotation.NonNull;
+import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
+import androidx.room.Room;
 
 import com.example.plater.R;
 import com.example.plater.Recipe;
 import com.example.plater.utils.Config;
 import com.example.plater.utils.HttpRequest;
+import com.example.plater.utils.MyDB;
 import com.example.plater.utils.Util;
 
 import org.json.JSONArray;
@@ -25,10 +30,16 @@ import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-public class MainActivityViewModel extends ViewModel {
+public class MainActivityViewModel extends AndroidViewModel {
 
     int bottomViewNavigationOp = R.id.homeView;
     MutableLiveData<List<Recipe>> recipes;
+    MyDB db;
+
+    public MainActivityViewModel(@NonNull Application application) {
+        super(application);
+        db = MyDB.getDatabase(application);
+    }
 
     public LiveData<List<Recipe>> getRecipeList() {
         //  se ainda nao existirem receitas na lista, conecta-se ao servidor para obte-las;
@@ -45,8 +56,17 @@ public class MainActivityViewModel extends ViewModel {
         executorService.execute(new Runnable() {
             @Override
             public void run() {
-                List<Recipe> recipesList = new ArrayList<>();
+                //  lista de receitas local
+                List<Recipe> recipesList = db.myDao().getAllRecipes();
+                int lastRecipe;
+                if(recipesList.size() > 0) {
+                    recipes.postValue(recipesList);
+                   lastRecipe = recipesList.get(recipesList.size() - 1).getId();
+                }
+                else { lastRecipe = 0; }
+
                 HttpRequest httpRequest = new HttpRequest(Config.SERVER_URL_BASE + "carrega_todas_receitas.php", "GET", "UTF-8");
+                httpRequest.addParam("lastRecipe", String.valueOf(lastRecipe));
                 try {
                     InputStream is = httpRequest.execute();
                     String result = Util.inputStream2String(is, "UTF-8");
@@ -63,7 +83,7 @@ public class MainActivityViewModel extends ViewModel {
                             JSONObject jRecipe = jsonArray.getJSONObject(i);
 
                             //TODO: AJUSTAR ESSA LISTA PARA RECEBER A MILTIMIDIA
-                            String id = jRecipe.getString("id_receita");
+                            int id = parseInt(jRecipe.getString("id_receita"));
                             String titulo = jRecipe.getString("titulo_receita");
                             String descricao = jRecipe.getString("descricao_receita");
                             String tempoPreparo = jRecipe.getString("tempo_preparo");
@@ -72,6 +92,7 @@ public class MainActivityViewModel extends ViewModel {
                             String categoria = jRecipe.getString("categoria");
 
                             Recipe recipe = new Recipe(id, titulo, descricao, tempoPreparo, rendimento, tipoRendimento, categoria);
+                            db.myDao().insertRecipe(recipe);
                             recipesList.add(recipe);
                         }
                         //  avisa a products que a lista de produtos mudou

@@ -1,11 +1,16 @@
 package com.example.plater;
 
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+
 import java.io.Serializable;
 import java.util.List;
 
+@Entity
 public class Recipe implements Serializable {
 
-    private String id;
+    @PrimaryKey
+    private int id;
     private String titulo;
     private String descricao;
     private String tempoPreparo;
@@ -15,7 +20,7 @@ public class Recipe implements Serializable {
     private String userName = "plater_chef";
     private int image = R.drawable.img_wafflefix;
 
-    public Recipe(String id, String titulo, String descricao, String tempoPreparo, int rendimento, String tipoRendimento, String categoria) {
+    public Recipe(int id, String titulo, String descricao, String tempoPreparo, int rendimento, String tipoRendimento, String categoria) {
         this.id = id;
         this.titulo = titulo;
         this.descricao = descricao;
@@ -25,17 +30,11 @@ public class Recipe implements Serializable {
         this.categoria = categoria;
     }
 
-    public Recipe(String id, String titulo, String descricao) {
-        this.id = id;
-        this.titulo = titulo;
-        this.descricao = descricao;
-    }
-
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 

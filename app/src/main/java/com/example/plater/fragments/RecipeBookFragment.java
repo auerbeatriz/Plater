@@ -69,7 +69,7 @@ public class RecipeBookFragment extends Fragment {
 
         final String username = Config.getLogin(getActivity());
         final String senha = Config.getPassword(getActivity());
-        RecipeBookViewModel viewModel = new ViewModelProvider(getActivity(), new RecipeBookViewModel.RecipeBookViewModelFactory(username, senha)).get(RecipeBookViewModel.class);
+        RecipeBookViewModel viewModel = new ViewModelProvider(getActivity()).get(RecipeBookViewModel.class);
         LiveData<List<Recipe>> favoriteRecipesList = viewModel.getFavoriteRecipes();
         favoriteRecipesList.observe(getViewLifecycleOwner(), new Observer<List<Recipe>>() {
             @Override
