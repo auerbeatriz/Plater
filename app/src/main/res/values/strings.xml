@@ -15,9 +15,7 @@
     <string name="config_option">Configurações</string>
 
     <!-- Fragment placeholder -->
-    <string name="home_fragment">Home</string>
     <string name="filter_fragment">Filtros</string>
-    <string name="recipe_book_fragment">Livro de receitas</string>
 
     <!-- Placeholders -->
     <string name="search_placeholder">Pesquisar receita ou usuário</string>
@@ -27,6 +25,10 @@
     <string name="et_senha_placehoder">senha</string>
     <string name="et_novaSenha_placeholder">nova senha</string>
     <string name="et_confirmeSenha_placeholder">confirmar senha</string>
+    <string name="et_code1">Primeiro número da sequência</string>
+    <string name="et_code2">Segundo número da sequência</string>
+    <string name="et_code3">Terceiro número da sequência</string>
+    <string name="et_code4">Qaurto número da sequência</string>
 
     <!--TextView-->
     <string name="signup">Cadastro</string>
@@ -43,40 +45,10 @@
     <string name="verify_code">Insira o código de verificação enviado para o email.</string>
     <string name="change_password">Crie uma nova senha para a sua conta.</string>
     <string name="tv_recipe_book">Seu livro de receitas</string>
-    <string name="tab_my_recipes">Minhas receitas</string>
-    <string name="tab_my_favorites">Meus favoritos</string>
-    <string name="tv_filtros">Filtros</string>
-
-
-    <string name="recipe_title">Waffle americano</string>
-    <string name="recipe_description">Simple and Easy Waffle Recipe – Try our classic recipe (with simple secret ingredient and key step!) for the best fluffy and crispy homemade waffles. They are quick to make from scratch and perfect for loading with your favorite toppings!</string>
-    <string name="user_name">fulano</string>
-    <string name="ingred">Ingredientes</string>
-    <string name="prep">Modo de Preparo</string>
-
-    <!--Texto Placeholder(mudar no backend)-->
-    <string name="ing">● 130g de farinha de trigo</string>
-    <string name="ing2">● 3g de fermento em pó</string>
-    <string name="ing3">● 2g de bicarbonato de sódio</string>
-    <string name="ing4">● 30g de açúcar refinado</string>
-    <string name="ing5">● 20g de manteiga</string>
-    <string name="ing6">● 50g de ovos</string>
-    <string name="ing7">● 100g de leite integral</string>
-    <string name="mdp">Colocar todos os ingredientes em uma vasilha.</string>
-    <string name="mdp2">Misturar com um fuê até homogeneizar.</string>
-    <string name="mdp3">Misturar com um fuê até homogeneizar.</string>
-    <string name="mdp4">Pegar uma colher grande da mistura e aplicar em uma máquina de waffle/frigideira.</string>
-    <string name="mdp5">Espere Dourar.</string>
-    <string name="mdp6">Sirva quente (você pode servir com manteiga, mel, ou geleia).</string>
-    <string name="tempo">10 Min</string>
-    <string name="rend">1 pessoa</string>
-    <string name="dono">Criado por Usuario_Plater</string>
 
     <!--Buttons-->
     <string name="btn_cadastrar">Cadastrar</string>
     <string name="btn_envie_email">Enviar código</string>
     <string name="btn_alterarSenha">Alterar senha</string>
     <string name="btn_verificarCodigo">Verificar código</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

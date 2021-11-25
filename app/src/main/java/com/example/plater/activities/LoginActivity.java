@@ -37,7 +37,7 @@ public class LoginActivity extends AppCompatActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
         //  construcao do layout
-        setContentView(R.layout.activity_signin);
+        setContentView(R.layout.activity_login);
 
         /* Atividade de Login
          * Realiza uma conexao com o servidor para fazer uma consulta no banco de dados e procurar o usuario

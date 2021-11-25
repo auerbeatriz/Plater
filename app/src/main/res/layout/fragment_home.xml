@@ -17,7 +17,7 @@
         android:fontFamily="@font/poppins_semibold"
         android:gravity="left"
         android:paddingLeft="8dp"
-        android:text="@string/tv_filtros"
+        android:text="@string/filters"
         android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

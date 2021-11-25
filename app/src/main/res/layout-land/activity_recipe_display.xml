@@ -10,6 +10,16 @@
     tools:context=".activities.RecipeDisplayActivity">
 
 
+    <ImageView
+        android:id="@+id/imvRecipePhoto"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/recipe_item_height"
+        android:scaleType="centerInside"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/img_wafflefix" />
+
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/tb_RecipeName"
         android:layout_width="match_parent"
@@ -17,6 +27,131 @@
         android:background="#00FFFFFF"
         android:minHeight="?attr/actionBarSize"
         android:theme="?attr/actionBarTheme"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <ScrollView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="190dp"
+        android:background="@drawable/container_recipe_details"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="8dp">
+
+                <TextView
+                    android:id="@+id/tvTempoPreparo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="10 Min" />
+
+                <TextView
+                    android:id="@+id/tvDimRendimento"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginRight="8dp"
+                    android:layout_weight="0"
+                    android:fontFamily="@font/poppins_bold"
+                    android:text="-"
+                    android:textColor="@color/light_orange"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/tvRendimento"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0"
+                    android:text="1 pessoa" />
+
+                <TextView
+                    android:id="@+id/tvAumRendimento"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/poppins_bold"
+                    android:text="+"
+                    android:textColor="@color/light_orange"
+                    android:textSize="16sp" />
+
+                <ImageView
+                    android:id="@+id/btnFavoritar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0"
+                    app:srcCompat="@drawable/ic_favoritar" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tvTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_semibold"
+                android:text="Título"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/tvUserCreator"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableStart="@drawable/ic_user_arroba"
+                android:drawableLeft="@drawable/ic_user_arroba"
+                android:fontFamily="@font/poppins_light"
+                android:text="plater_chef"
+                android:textColor="@color/medium_gray"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/tvDescription"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Descrição" />
+
+            <TextView
+                android:id="@+id/tvIngredientes"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/poppins_medium"
+                android:text="@string/tv_ingredientes"
+                android:textSize="16sp" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvIngredientes"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="4dp" />
+
+            <TextView
+                android:id="@+id/tvModoPreparo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="4dp"
+                android:fontFamily="@font/poppins_semibold"
+                android:text="@string/tv_tutorial" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvModoPreparo"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </LinearLayout>
+    </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

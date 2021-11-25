@@ -7,14 +7,24 @@
         <entry key="..\:/Users/Lilian/StudioProjects/Plater/app/src/main/res/drawable/container_recipe_details.xml" value="0.21302083333333333" />
         <entry key="..\:/Users/Lilian/StudioProjects/Plater/app/src/main/res/drawable/et_form.xml" value="0.21302083333333333" />
         <entry key="..\:/Users/Lilian/StudioProjects/Plater/app/src/main/res/layout-land/activity_recipe_display.xml" value="0.25" />
+        <entry key="..\:/Users/Lilian/StudioProjects/Plater/app/src/main/res/layout/activity_change_password.xml" value="0.25" />
+        <entry key="..\:/Users/Lilian/StudioProjects/Plater/app/src/main/res/layout/activity_forgot_password.xml" value="0.16983695652173914" />
+        <entry key="..\:/Users/Lilian/StudioProjects/Plater/app/src/main/res/layout/activity_login.xml" value="0.16983695652173914" />
+        <entry key="..\:/Users/Lilian/StudioProjects/Plater/app/src/main/res/layout/activity_main.xml" value="0.16983695652173914" />
+        <entry key="..\:/Users/Lilian/StudioProjects/Plater/app/src/main/res/layout/activity_recipe_book.xml" value="0.16983695652173914" />
         <entry key="..\:/Users/Lilian/StudioProjects/Plater/app/src/main/res/layout/activity_recipe_display.xml" value="0.33" />
         <entry key="..\:/Users/Lilian/StudioProjects/Plater/app/src/main/res/layout/activity_signin.xml" value="0.19655797101449277" />
-        <entry key="..\:/Users/Lilian/StudioProjects/Plater/app/src/main/res/layout/activity_signup.xml" value="0.192481884057971" />
+        <entry key="..\:/Users/Lilian/StudioProjects/Plater/app/src/main/res/layout/activity_signup.xml" value="0.33" />
+        <entry key="..\:/Users/Lilian/StudioProjects/Plater/app/src/main/res/layout/activity_verify_code.xml" value="0.16983695652173914" />
         <entry key="..\:/Users/Lilian/StudioProjects/Plater/app/src/main/res/layout/favorite_recipe_item.xml" value="0.22" />
+        <entry key="..\:/Users/Lilian/StudioProjects/Plater/app/src/main/res/layout/filter_item.xml" value="0.16983695652173914" />
+        <entry key="..\:/Users/Lilian/StudioProjects/Plater/app/src/main/res/layout/fragment_categories.xml" value="0.16983695652173914" />
+        <entry key="..\:/Users/Lilian/StudioProjects/Plater/app/src/main/res/layout/fragment_home.xml" value="0.16983695652173914" />
         <entry key="..\:/Users/Lilian/StudioProjects/Plater/app/src/main/res/layout/fragment_recipe_book.xml" value="0.18840579710144928" />
         <entry key="..\:/Users/Lilian/StudioProjects/Plater/app/src/main/res/layout/ingredient_item.xml" value="0.25" />
         <entry key="..\:/Users/Lilian/StudioProjects/Plater/app/src/main/res/layout/recipe_item.xml" value="0.33" />
         <entry key="..\:/Users/Lilian/StudioProjects/Plater/app/src/main/res/layout/tutorial_item.xml" value="0.33" />
+        <entry key="..\:/Users/Lilian/StudioProjects/Plater/app/src/main/res/menu/bottom_nav_menu.xml" value="0.196875" />
       </map>
     </option>
   </component>

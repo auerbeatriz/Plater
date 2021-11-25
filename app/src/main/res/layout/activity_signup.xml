@@ -19,7 +19,7 @@
                 android:id="@+id/imv_logo"
                 android:layout_width="match_parent"
                 android:layout_height="85dp"
-                android:layout_marginTop="64dp"
+                android:layout_marginTop="32dp"
                 android:contentDescription="@string/description_logo_horizontal"
                 app:srcCompat="@drawable/name_defaultxxxhdpi" />
 
@@ -76,8 +76,29 @@
                 android:hint="@string/et_email_placeholder"
                 android:inputType="textEmailAddress" />
 
+            <com.google.android.material.textfield.TextInputLayout
+                app:passwordToggleEnabled="true"
+                app:hintEnabled="false"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="32dp"
+                android:layout_marginLeft="32dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="32dp"
+                android:layout_marginRight="32dp"
+                android:ems="10">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etSenha"
+                    style="@style/et_form"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textPassword"
+                    android:hint="@string/et_senha_placehoder"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
             <EditText
-                android:id="@+id/et_senha"
+                android:id="@+id/editTextTextPassword"
                 style="@style/et_form"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -87,7 +108,7 @@
                 android:layout_marginEnd="32dp"
                 android:layout_marginRight="32dp"
                 android:ems="10"
-                android:hint="@string/et_senha_placehoder"
+                android:hint="@string/et_confirmeSenha_placeholder"
                 android:inputType="textPassword" />
 
             <Button

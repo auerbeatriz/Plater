@@ -70,7 +70,7 @@ public class SignupActivity extends AppCompatActivity {
                     return;
                 }
 
-                EditText etSenha = findViewById(R.id.et_senha);
+                EditText etSenha = findViewById(R.id.etSenha);
                 final String senha = etSenha.getText().toString();
                 if(senha.isEmpty()) {
                     Toast.makeText(SignupActivity.this, "Senha não informado", Toast.LENGTH_LONG).show();
