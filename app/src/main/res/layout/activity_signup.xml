@@ -98,7 +98,7 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <EditText
-                android:id="@+id/editTextTextPassword"
+                android:id="@+id/etConfirmPassword"
                 style="@style/et_form"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

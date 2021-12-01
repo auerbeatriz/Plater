@@ -83,6 +83,22 @@ public class MainActivity extends AppCompatActivity {
         return true;
     }
 
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        super.onOptionsItemSelected(item);
+        switch(item.getItemId()) {
+            case R.id.icConfig:
+                Intent i = new Intent(MainActivity.this, AccountConfigActivity.class);
+                startActivity(i);
+                return true;
+            case R.id.app_bar_search:
+                //TODO: INTEGRAR BUSCA
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
     void setFragment(Fragment fragment) {
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.fragContainer, fragment);

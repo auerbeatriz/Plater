@@ -71,9 +71,23 @@ public class SignupActivity extends AppCompatActivity {
                 }
 
                 EditText etSenha = findViewById(R.id.etSenha);
+                EditText etConfirmarSenha = findViewById(R.id.etConfirmPassword);
+
                 final String senha = etSenha.getText().toString();
+                final String confirmaSenha = etConfirmarSenha.getText().toString();
+
                 if(senha.isEmpty()) {
                     Toast.makeText(SignupActivity.this, "Senha não informado", Toast.LENGTH_LONG).show();
+                    v.setEnabled(true);
+                    return;
+                }
+                if(senha.length() < 6) {
+                    Toast.makeText(SignupActivity.this, "Senha muito curta. Insira pelo menos 6 caracteres.", Toast.LENGTH_LONG).show();
+                    v.setEnabled(true);
+                    return;
+                }
+                if(!senha.equals(confirmaSenha)) {
+                    Toast.makeText(SignupActivity.this, "As senhas informadas são diferentes.", Toast.LENGTH_LONG).show();
                     v.setEnabled(true);
                     return;
                 }

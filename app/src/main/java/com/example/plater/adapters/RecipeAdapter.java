@@ -1,4 +1,4 @@
-package com.example.plater;
+package com.example.plater.adapters;
 
 import android.content.Context;
 import android.content.Intent;
@@ -12,6 +12,8 @@ import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.plater.R;
+import com.example.plater.Recipe;
 import com.example.plater.activities.RecipeDisplayActivity;
 import com.example.plater.holders.MyViewHolder;
 

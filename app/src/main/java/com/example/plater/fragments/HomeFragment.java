@@ -16,9 +16,9 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.plater.R;
-import com.example.plater.RecipeAdapter;
 import com.example.plater.Recipe;
 import com.example.plater.adapters.FilterAdapter;
+import com.example.plater.adapters.RecipeAdapter;
 import com.example.plater.models.FilterViewModel;
 import com.example.plater.models.MainActivityViewModel;
 

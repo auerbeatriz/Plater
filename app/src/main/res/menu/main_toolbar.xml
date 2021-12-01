@@ -9,7 +9,7 @@
         app:actionViewClass="android.widget.SearchView"
         app:showAsAction="ifRoom" />
     <item
-        android:id="@+id/ic_search"
+        android:id="@+id/icConfig"
         android:enabled="true"
         android:icon="@drawable/ic_baseline_settings_24"
         android:title="@string/config_option"

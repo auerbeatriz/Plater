@@ -7,13 +7,27 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.plater.R;
+import com.example.plater.utils.Config;
+import com.example.plater.utils.HttpRequest;
+import com.example.plater.utils.Util;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 public class VerifyCodeActivity extends AppCompatActivity {
 
@@ -95,13 +109,99 @@ public class VerifyCodeActivity extends AppCompatActivity {
             }
         });
 
+        Intent ai = getIntent();
+        String email = ai.getStringExtra("email");
+
         //Navigation between screens
         Button btnVerificarCodigo = findViewById(R.id.btn_enviarCodigo_fp);
         btnVerificarCodigo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(VerifyCodeActivity.this, ChangePasswordActivity.class);
-                startActivity(i);
+                v.setEnabled(false);
+                String code = etNC1.getText().toString() + etNC2.getText().toString() + etNC3.getText().toString() + etNC4.getText().toString();
+
+                ExecutorService executorService = Executors.newSingleThreadExecutor();
+                executorService.execute(new Runnable() {
+                    @Override
+                    public void run() {
+                        HttpRequest httpRequest = new HttpRequest(Config.SERVER_URL_BASE + "recuperacao_validarCodigo.php", "POST", "UTF-8");
+                        httpRequest.addParam("email", email);
+                        httpRequest.addParam("code", code);
+
+                        try {
+                            InputStream is = httpRequest.execute();
+                            String result = Util.inputStream2String(is, "UTF-8");
+                            httpRequest.finish();
+
+                            Log.d("HTTP_REQUEST_RESULT", result);
+
+                            JSONObject jsonObject = new JSONObject(result);
+                            final int success = jsonObject.getInt("success");
+                            if(success == 1) {
+                                Intent i = new Intent(VerifyCodeActivity.this, ChangePasswordActivity.class);
+                                i.putExtra("email", email);
+                                startActivity(i);
+                            }
+                            else {
+                                runOnUiThread(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        Toast.makeText(VerifyCodeActivity.this, "Algo deu errado. Tente novamente.", Toast.LENGTH_LONG).show();
+                                        v.setEnabled(false);
+                                    }
+                                });
+                            }
+                        } catch (IOException | JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                });
+            }
+        });
+
+        TextView tvResendCode = findViewById(R.id.tvResendCode);
+        tvResendCode.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ExecutorService executorService = Executors.newSingleThreadExecutor();
+                executorService.execute(new Runnable() {
+                    @Override
+                    public void run() {
+                        HttpRequest httpRequest = new HttpRequest(Config.SERVER_URL_BASE + "recuperacao_enviarEmail.php", "POST", "UTF-8");
+                        httpRequest.addParam("email", email);
+
+                        try {
+                            InputStream is = httpRequest.execute();
+                            String result = Util.inputStream2String(is, "UTF-8");
+                            httpRequest.finish();
+
+                            Log.d("HTTP_REQUEST_RESULT", result);
+
+                            JSONObject jsonObject = new JSONObject(result);
+                            final int success = jsonObject.getInt("success");
+                            if(success == 1) {
+                                runOnUiThread(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        Toast.makeText(VerifyCodeActivity.this, "Novo código enviado.", Toast.LENGTH_LONG).show();
+                                    }
+                                });
+                            }
+                            else {
+                                runOnUiThread(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        Toast.makeText(VerifyCodeActivity.this, "Não foi possível concluir esse pedido.", Toast.LENGTH_LONG).show();
+                                        Intent i = new Intent(VerifyCodeActivity.this, LoginActivity.class);
+                                        startActivity(i);
+                                    }
+                                });
+                            }
+                        } catch (IOException | JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                });
             }
         });
     }

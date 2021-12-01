@@ -18,6 +18,7 @@ import com.example.plater.utils.Config;
 import com.example.plater.utils.HttpRequest;
 import com.example.plater.utils.Util;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -50,10 +51,13 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View view) {
                 view.setEnabled(false);
 
+                Log.d("TESTE_LOGIN", Config.getLogin(LoginActivity.this));
+                Log.d("TESTE_LOGIN", Config.getPassword(LoginActivity.this));
+
                 //  obtendo dados passados para login
                 EditText et_email_login = findViewById(R.id.et_email_login);
-                final String username = et_email_login.getText().toString();
-                if(username.isEmpty()) {
+                final String email = et_email_login.getText().toString();
+                if(email.isEmpty()) {
                     Toast.makeText(LoginActivity.this, "Username não informado", Toast.LENGTH_LONG).show();
                     view.setEnabled(true);
                     return;
@@ -73,7 +77,7 @@ public class LoginActivity extends AppCompatActivity {
                     @Override
                     public void run() {
                         HttpRequest httpRequest = new HttpRequest(Config.SERVER_URL_BASE + "login.php", "POST", "UTF-8");
-                        httpRequest.setBasicAuth(username, senha);
+                        httpRequest.setBasicAuth(email, senha);
 
                         try {
                             InputStream is = httpRequest.execute();
@@ -89,11 +93,15 @@ public class LoginActivity extends AppCompatActivity {
                                  * Entao, vamos setar essas configuracoes de email e senha em um arquivo para uso futuro
                                  * e redirecionar o usuario para "dentro" da app (mainActivity)
                                  */
+                                final String username = jsonObject.getString("username");
+                                final String nome = jsonObject.getString("nome");
                                 runOnUiThread(new Runnable() {
                                     @Override
                                     public void run() {
-                                        Config.setLogin(LoginActivity.this, username);
+                                        Config.setLogin(LoginActivity.this, email);
                                         Config.setPassword(LoginActivity.this, senha);
+                                        Config.setUsername(LoginActivity.this, username);
+                                        Config.setName(LoginActivity.this, nome);
                                         Intent i = new Intent(LoginActivity.this, MainActivity.class);
                                         startActivity(i);
                                     }
@@ -115,7 +123,8 @@ public class LoginActivity extends AppCompatActivity {
                             runOnUiThread(new Runnable() {
                                 @Override
                                 public void run() {
-                                    Toast.makeText(LoginActivity.this, (CharSequence) e, Toast.LENGTH_LONG).show();
+                                    Toast.makeText(LoginActivity.this, "Alguma coisa deu errado. Tente novamente.", Toast.LENGTH_LONG).show();
+                                    view.setEnabled(true);
                                 }
                             });
                         }

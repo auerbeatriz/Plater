@@ -13,6 +13,10 @@
         android:theme="@style/Theme.Plater"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".activities.AccountConfigActivity"
+            android:label="Informações de conta"
+            android:exported="false" />
+        <activity
             android:name=".activities.RecipeDisplayActivity"
             android:label=""
             android:parentActivityName=".activities.MainActivity" />
@@ -30,7 +34,7 @@
             android:parentActivityName=".activities.LoginActivity" />
         <activity
             android:name=".activities.LoginActivity"
-            android:launchMode="singleTop"></activity>
+            android:launchMode="singleTop" />
         <activity android:name=".activities.SignupActivity" />
         <activity android:name=".activities.MainActivity">
             <intent-filter>

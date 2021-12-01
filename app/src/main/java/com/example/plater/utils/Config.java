@@ -6,7 +6,7 @@ import android.content.SharedPreferences;
 public class Config {
 
     //TODO: alterar nome do servidor para o da app no heroku
-    public static String SERVER_URL_BASE = "http://192.168.100.31:8080/";
+    public static String SERVER_URL_BASE = "http://192.168.100.31:8080/plater-web/";
 
     public static void setLogin(Context context, String login) {
         SharedPreferences mPrefs = context.getSharedPreferences("configs", 0);
@@ -28,5 +28,27 @@ public class Config {
     public static String getPassword(Context context) {
         SharedPreferences mPrefs = context.getSharedPreferences("configs", 0);
         return mPrefs.getString("password", "");
+    }
+
+    public static void setUsername(Context context, String username) {
+        SharedPreferences mPrefs = context.getSharedPreferences("configs", 0);
+        SharedPreferences.Editor mEditor = mPrefs.edit();
+        mEditor.putString("username", username).commit();
+    }
+
+    public static String getUsername(Context context) {
+        SharedPreferences mPrefs = context.getSharedPreferences("configs", 0);
+        return mPrefs.getString("username", "");
+    }
+
+    public static void setName(Context context, String name) {
+        SharedPreferences mPrefs = context.getSharedPreferences("configs", 0);
+        SharedPreferences.Editor mEditor = mPrefs.edit();
+        mEditor.putString("name", name).commit();
+    }
+
+    public static String getName(Context context) {
+        SharedPreferences mPrefs = context.getSharedPreferences("configs", 0);
+        return mPrefs.getString("name", "");
     }
 }
