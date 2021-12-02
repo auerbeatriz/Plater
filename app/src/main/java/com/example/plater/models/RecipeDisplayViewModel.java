@@ -33,15 +33,18 @@ import java.util.concurrent.Executors;
 public class RecipeDisplayViewModel extends AndroidViewModel {
 
     int idReceita;
+    String email;
+    String senha;
     MyDB db;
     MutableLiveData<List<Ingrediente>> ingredientes;
     MutableLiveData<List<PassoPreparo>> modoPreparo;
 
     public RecipeDisplayViewModel(@NonNull Application application, int idReceita) {
         super(application);
-
         db = MyDB.getDatabase(application);
         this.idReceita = idReceita;
+        this.email = Config.getLogin(application);
+        this.senha = Config.getPassword(application);
     }
 
     public LiveData<List<Ingrediente>> getIngredients() {
@@ -71,6 +74,7 @@ public class RecipeDisplayViewModel extends AndroidViewModel {
                 }
                 else {
                     HttpRequest httpRequest = new HttpRequest(Config.SERVER_URL_BASE + "carrega_ingredientes.php", "GET", "UTF-8");
+                    httpRequest.setBasicAuth(email, senha);
                     httpRequest.addParam("id_receita", String.valueOf(idReceita));
                     try {
                         InputStream is = httpRequest.execute();
@@ -78,6 +82,7 @@ public class RecipeDisplayViewModel extends AndroidViewModel {
                         httpRequest.finish();
 
                         Log.d("HTTP_REQUEST_RESULT", result);
+                        Log.d("HTTP_REQUEST_RESULT", String.valueOf(idReceita));
 
                         JSONObject jsonObject = new JSONObject(result);
                         int success = jsonObject.getInt("success");
@@ -118,6 +123,7 @@ public class RecipeDisplayViewModel extends AndroidViewModel {
                 }
                 else {
                     HttpRequest httpRequest = new HttpRequest(Config.SERVER_URL_BASE + "carrega_passo_preparo.php", "GET", "UTF-8");
+                    httpRequest.setBasicAuth(email, senha);
                     httpRequest.addParam("id_receita", String.valueOf(idReceita));
                     try {
                         InputStream is = httpRequest.execute();

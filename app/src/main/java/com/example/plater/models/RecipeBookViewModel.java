@@ -35,16 +35,18 @@ import java.util.concurrent.Executors;
 public class RecipeBookViewModel extends AndroidViewModel {
 
     MutableLiveData<List<Recipe>> favoriteRecipesList;
-    String username;
+    String email;
     String senha;
+    String username;
     MyDB db;
 
     public RecipeBookViewModel(@NonNull Application application) {
         super(application);
         db = MyDB.getDatabase(application);
 
-        this.username = Config.getLogin(application);
+        this.email = Config.getLogin(application);
         this.senha = Config.getPassword(application);
+        this.username = Config.getUsername(application);
     }
 
     public LiveData<List<Recipe>> getFavoriteRecipes() {
@@ -62,8 +64,9 @@ public class RecipeBookViewModel extends AndroidViewModel {
             @Override
             public void run() {
                 List<Recipe> favoriteRecipes = new ArrayList<>();
-                HttpRequest httpRequest = new HttpRequest(Config.SERVER_URL_BASE + "carrega_favoritas.php", "POST", "UTF-8");
-                httpRequest.setBasicAuth(username, senha);
+                HttpRequest httpRequest = new HttpRequest(Config.SERVER_URL_BASE + "carrega_favoritas.php", "GET", "UTF-8");
+                httpRequest.setBasicAuth(email, senha);
+                httpRequest.addParam("username", username);
                 try {
                     InputStream is = httpRequest.execute();
                     String result = Util.inputStream2String(is, "UTF-8");

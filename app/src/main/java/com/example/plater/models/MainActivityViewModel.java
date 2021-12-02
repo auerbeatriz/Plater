@@ -51,6 +51,9 @@ public class MainActivityViewModel extends AndroidViewModel {
     }
 
     void loadRecipes() {
+        final String email = Config.getLogin(getApplication());
+        final String senha = Config.getPassword(getApplication());
+
         //  criando uma nova thread para obter os dados
         ExecutorService executorService = Executors.newSingleThreadExecutor();
         executorService.execute(new Runnable() {
@@ -66,6 +69,7 @@ public class MainActivityViewModel extends AndroidViewModel {
                 else { lastRecipe = 0; }
 
                 HttpRequest httpRequest = new HttpRequest(Config.SERVER_URL_BASE + "carrega_todas_receitas.php", "GET", "UTF-8");
+                httpRequest.setBasicAuth(email, senha);
                 httpRequest.addParam("lastRecipe", String.valueOf(lastRecipe));
                 try {
                     InputStream is = httpRequest.execute();

@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -47,8 +48,9 @@ public class RecipeDisplayActivity extends AppCompatActivity {
         Intent i = getIntent();
         Recipe recipe = (Recipe) i.getSerializableExtra("recipe");
 
-        final String username = Config.getLogin(RecipeDisplayActivity.this);
+        final String email = Config.getLogin(RecipeDisplayActivity.this);
         final String senha = Config.getPassword(RecipeDisplayActivity.this);
+        final String username = Config.getUsername(RecipeDisplayActivity.this);
 
         ImageView btnFavoritar = findViewById(R.id.btnFavoritar);
         btnFavoritar.setTag(R.drawable.ic_favoritar);
@@ -58,12 +60,15 @@ public class RecipeDisplayActivity extends AppCompatActivity {
             @Override
             public void run() {
                 HttpRequest httpRequest = new HttpRequest(Config.SERVER_URL_BASE + "verifica_se_receita_favorita.php", "POST", "UTF-8");
-                httpRequest.setBasicAuth(username, senha);
+                httpRequest.setBasicAuth(email, senha);
+                httpRequest.addParam("username", username);
                 httpRequest.addParam("id_receita", String.valueOf(recipe.getId()));
                 try {
                     InputStream is = httpRequest.execute();
                     String result = Util.inputStream2String(is, "UTF-8");
                     httpRequest.finish();
+
+                    Log.d("HTTP_REQUEST_RESULT", result);
 
                     JSONObject jsonObject = new JSONObject(result);
                     final int success = jsonObject.getInt("success");
@@ -147,13 +152,16 @@ public class RecipeDisplayActivity extends AppCompatActivity {
                         @Override
                         public void run() {
                             HttpRequest httpRequest = new HttpRequest(Config.SERVER_URL_BASE + "favorita_desfavorita.php", "POST", "UTF-8");
-                            httpRequest.setBasicAuth(username, senha);
+                            httpRequest.setBasicAuth(email, senha);
+                            httpRequest.addParam("username", username);
                             httpRequest.addParam("opcao", "1");
                             httpRequest.addParam("id_receita", String.valueOf(recipe.getId()));
                             try {
                                 InputStream is = httpRequest.execute();
                                 String result = Util.inputStream2String(is, "UTF-8");
                                 httpRequest.finish();
+
+                                Log.d("HTTP_REQUEST_RESULT", result);
 
                                 JSONObject jsonObject = new JSONObject(result);
                                 final int success = jsonObject.getInt("success");
@@ -186,7 +194,8 @@ public class RecipeDisplayActivity extends AppCompatActivity {
                         @Override
                         public void run() {
                             HttpRequest httpRequest = new HttpRequest(Config.SERVER_URL_BASE + "favorita_desfavorita.php", "POST", "UTF-8");
-                            httpRequest.setBasicAuth(username, senha);
+                            httpRequest.setBasicAuth(email, senha);
+                            httpRequest.addParam("username", username);
                             httpRequest.addParam("opcao", "0");
                             httpRequest.addParam("id_receita", String.valueOf(recipe.getId()));
                             try {
