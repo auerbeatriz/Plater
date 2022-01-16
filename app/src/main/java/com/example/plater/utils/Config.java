@@ -6,7 +6,7 @@ import android.content.SharedPreferences;
 public class Config {
 
     //TODO: alterar nome do servidor para o da app no heroku
-    public static String SERVER_URL_BASE = "http://192.168.100.31:8080/plater-web/";
+    public static String SERVER_URL_BASE = "http://plater.tech/";
 
     public static void setLogin(Context context, String login) {
         SharedPreferences mPrefs = context.getSharedPreferences("configs", 0);

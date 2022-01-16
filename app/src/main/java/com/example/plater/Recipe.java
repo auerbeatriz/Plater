@@ -4,7 +4,6 @@ import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
 import java.io.Serializable;
-import java.util.List;
 
 @Entity
 public class Recipe implements Serializable {
@@ -16,18 +15,24 @@ public class Recipe implements Serializable {
     private String tempoPreparo;
     private int rendimento;
     private String tipoRendimento;
+    private int idCategoria;
     private String categoria;
     private String userName = "plater_chef";
-    private int image = R.drawable.img_wafflefix;
+    private String mediaUrl;
+    private String urlType;
 
-    public Recipe(int id, String titulo, String descricao, String tempoPreparo, int rendimento, String tipoRendimento, String categoria) {
+    public Recipe(int id, String titulo, String descricao, String tempoPreparo, int rendimento, String tipoRendimento, int idCategoria, String categoria, String mediaUrl, String urlType) {
         this.id = id;
         this.titulo = titulo;
         this.descricao = descricao;
         this.tempoPreparo = tempoPreparo;
         this.rendimento = rendimento;
         this.tipoRendimento = tipoRendimento;
+        this.idCategoria = idCategoria;
         this.categoria = categoria;
+        this.userName = userName;
+        this.mediaUrl = mediaUrl;
+        this.urlType = urlType;
     }
 
     public int getId() {
@@ -78,6 +83,10 @@ public class Recipe implements Serializable {
         this.tipoRendimento = tipoRendimento;
     }
 
+    public int getIdCategoria() { return idCategoria; }
+
+    public void setIdCategoria(int idCategoria) { this.idCategoria = idCategoria; }
+
     public String getCategoria() {
         return categoria;
     }
@@ -94,11 +103,11 @@ public class Recipe implements Serializable {
         this.userName = userName;
     }
 
-    public int getImage() {
-        return image;
-    }
+    public String getMediaUrl() { return mediaUrl; }
 
-    public void setImage(int image) {
-        this.image = image;
-    }
+    public void setMediaUrl(String mediaUrl) { this.mediaUrl = mediaUrl; }
+
+    public String getUrlType() { return urlType; }
+
+    public void setUrlType(String urlType) { this.urlType = urlType; }
 }

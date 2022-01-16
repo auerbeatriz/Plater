@@ -15,6 +15,7 @@
 
     <!--colors for button style-->
 
+    <color name="background">#fafafa</color>
     <color name="primaryVariant">#dddddd</color>
     <color name="light_orange">#FF8040</color>
     <color name="dark_orange">#fb5400</color>
@@ -24,6 +25,8 @@
     <color name="light_gray_one">#bfbfbf</color>
     <color name="gradient_start_color">#4c84ff</color>
     <color name="gradient_end_color">#18a3fe</color>
+
+    <color name="light_yellow">#e7e158</color>
 
     <!--colors for tab and screen text-->
     <color name="tab_indicator_gray">#c0c0c0</color>

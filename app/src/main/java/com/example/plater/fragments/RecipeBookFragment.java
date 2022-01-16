@@ -60,7 +60,6 @@ public class RecipeBookFragment extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        float w = getResources().getDimension(R.dimen.recipe_item_width);
         GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(), 2);
 
         RecyclerView rvRecipes = getView().findViewById(R.id.rvRecipeBook);
@@ -73,7 +72,7 @@ public class RecipeBookFragment extends Fragment {
         favoriteRecipesList.observe(getViewLifecycleOwner(), new Observer<List<Recipe>>() {
             @Override
             public void onChanged(List<Recipe> recipes) {
-                RecipeAdapter recipeAdapter = new RecipeAdapter(getContext(), recipes);
+                RecipeAdapter recipeAdapter = new RecipeAdapter(getActivity(), recipes);
                 rvRecipes.setAdapter(recipeAdapter);
             }
         });

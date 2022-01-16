@@ -1,11 +1,9 @@
 package com.example.plater.adapters;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,15 +11,13 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.plater.Category;
 import com.example.plater.R;
-import com.example.plater.Recipe;
-import com.example.plater.activities.RecipeDisplayActivity;
+import com.example.plater.activities.CategoryRecipesActivity;
 import com.example.plater.holders.MyViewHolder;
 import com.example.plater.utils.HttpRequest;
-import com.example.plater.utils.Util;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -29,35 +25,33 @@ import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-public class RecipeAdapter extends RecyclerView.Adapter {
-
+public class CategoryAdapter extends RecyclerView.Adapter {
     Activity context;
-    List<Recipe> recipeList;
+    List<Category> categories;
 
-    public RecipeAdapter(Activity context, List<Recipe> recipeList) {
+    public CategoryAdapter(Activity context, List<Category> categories) {
         this.context = context;
-        this.recipeList = recipeList;
+        this.categories = categories;
     }
 
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater = LayoutInflater.from(context);
-        View view = layoutInflater.inflate(R.layout.recipe_item, parent, false);
-        return new MyViewHolder(view);
+        View v = layoutInflater.inflate(R.layout.category_item, parent, false);
+        return new MyViewHolder(v);
     }
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
-        Recipe recipe = recipeList.get(position);
+        Category category = categories.get(position);
 
-        ImageView imageView = holder.itemView.findViewById(R.id.imvRecipeImage);
-
+        ImageView imvCategory = holder.itemView.findViewById(R.id.imvCategory);
         ExecutorService executorService = Executors.newSingleThreadExecutor();
         executorService.execute(new Runnable() {
             @Override
             public void run() {
-                HttpRequest httpRequest = new HttpRequest(recipe.getMediaUrl(), "GET", "UTF-8");
+                HttpRequest httpRequest = new HttpRequest(category.getImageUrl(), "GET", "UTF-8");
                 try {
                     InputStream is = httpRequest.execute();
                     Bitmap img = BitmapFactory.decodeStream(is);
@@ -66,7 +60,7 @@ public class RecipeAdapter extends RecyclerView.Adapter {
                     context.runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            imageView.setImageBitmap(img);
+                            imvCategory.setImageBitmap(img);
                         }
                     });
                 } catch (IOException e) {
@@ -75,31 +69,21 @@ public class RecipeAdapter extends RecyclerView.Adapter {
             }
         });
 
-        TextView tvTitle = holder.itemView.findViewById(R.id.tvRecipeTitle);
-        tvTitle.setText(recipe.getTitulo());
-
-        TextView tvDescription = holder.itemView.findViewById(R.id.tvRecipeDescription);
-        tvDescription.setText(recipe.getDescricao());
-
-        TextView tvCreator = holder.itemView.findViewById(R.id.tvRecipeUserCreator);
-        tvCreator.setText(recipe.getUserName());
-
-        //quando a receita for selecionada
-        CardView cardView = holder.itemView.findViewById(R.id.cvRecipe);
-        cardView.setOnClickListener(new View.OnClickListener() {
+        imvCategory.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(context, RecipeDisplayActivity.class);
-                i.putExtra("recipe", recipe);
+                Intent i = new Intent(context, CategoryRecipesActivity.class);
+                i.putExtra("idCategoria", category.getId());
                 context.startActivity(i);
             }
         });
+
+        TextView tvCategory = holder.itemView.findViewById(R.id.tvCategoryName);
+        tvCategory.setText(category.getNome());
     }
-
-
 
     @Override
     public int getItemCount() {
-        return this.recipeList.size();
+        return categories.size();
     }
 }

@@ -75,7 +75,6 @@ public class HomeFragment extends Fragment {
         rvFilters.setAdapter(filterAdapter);
 
         //  setando o recyclerview de receitas
-        float w = getResources().getDimension(R.dimen.recipe_item_width);
         GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(), 2);
 
         RecyclerView rvRecipes = getView().findViewById(R.id.rv_home);
@@ -88,7 +87,7 @@ public class HomeFragment extends Fragment {
         recipeList.observe(getViewLifecycleOwner(), new Observer<List<Recipe>>() {
             @Override
             public void onChanged(List<Recipe> recipes) {
-                RecipeAdapter recipeAdapter = new RecipeAdapter(getContext(), recipes);
+                RecipeAdapter recipeAdapter = new RecipeAdapter(getActivity(), recipes);
                 rvRecipes.setAdapter(recipeAdapter);
             }
         });

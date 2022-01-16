@@ -4,6 +4,7 @@ import androidx.room.Dao;
 import androidx.room.Insert;
 import androidx.room.Query;
 
+import com.example.plater.Category;
 import com.example.plater.Ingrediente;
 import com.example.plater.PassoPreparo;
 import com.example.plater.Recipe;
@@ -21,6 +22,9 @@ public interface MyDao {
     @Insert
     void insertIngrediente (Ingrediente ingrediente);
 
+    @Insert
+    void insertCategory(Category category);
+
     @Query("SELECT * FROM recipe WHERE id=:idReceita")
     Recipe getRecipe(int idReceita);
 
@@ -33,4 +37,9 @@ public interface MyDao {
     @Query("SELECT * FROM ingrediente WHERE idReceita=:idReceita")
     List<Ingrediente> getRecipeIngredients(int idReceita);
 
+    @Query("SELECT * FROM category ORDER BY id")
+    List<Category> getAllCategories();
+
+    @Query(("SELECT * FROM recipe WHERE idCategoria=:idCategoria"))
+    List<Recipe> getCategoryRecipes(int idCategoria);
 }

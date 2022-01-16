@@ -93,9 +93,12 @@ public class MainActivityViewModel extends AndroidViewModel {
                             String tempoPreparo = jRecipe.getString("tempo_preparo");
                             int rendimento = parseInt(jRecipe.getString("rendimento"));
                             String tipoRendimento = jRecipe.getString("tipo_rendimento");
+                            int idCategoria = parseInt(jRecipe.getString("id_categoria"));
                             String categoria = jRecipe.getString("categoria");
+                            String url = jRecipe.getString("url");
+                            String urlType = jRecipe.getString("urlType");
 
-                            Recipe recipe = new Recipe(id, titulo, descricao, tempoPreparo, rendimento, tipoRendimento, categoria);
+                            Recipe recipe = new Recipe(id, titulo, descricao, tempoPreparo, rendimento, tipoRendimento, idCategoria, categoria, url, urlType);
                             db.myDao().insertRecipe(recipe);
                             recipesList.add(recipe);
                         }

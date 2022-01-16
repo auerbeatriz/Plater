@@ -12,4 +12,6 @@
 
     <dimen name="view_corner">12dp</dimen>
     <dimen name="recipeDescription_max_height">40dp</dimen>
+
+    <dimen name="category_container">70dp</dimen>
 </resources>
