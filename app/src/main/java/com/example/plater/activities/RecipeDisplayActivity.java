@@ -3,6 +3,7 @@ package com.example.plater.activities;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -13,6 +14,8 @@ import android.os.Bundle;
 
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -110,7 +113,7 @@ public class RecipeDisplayActivity extends AppCompatActivity {
         //  ontendo viewmodel
         RecipeDisplayViewModel recipeDisplayViewModel = new ViewModelProvider(this, new RecipeDisplayViewModel.RecipeDisplayViewModelFactory(this.getApplication(),recipe.getId())).get(RecipeDisplayViewModel.class);
 
-        LiveData<List<Ingrediente>> ingredientes = recipeDisplayViewModel.getIngredients();
+        MutableLiveData<List<Ingrediente>> ingredientes = recipeDisplayViewModel.getIngredients();
         ingredientes.observe(this, new Observer<List<Ingrediente>>() {
             @Override
             public void onChanged(List<Ingrediente> ingredientes) {
@@ -229,6 +232,34 @@ public class RecipeDisplayActivity extends AppCompatActivity {
                             }
                         }
                     });
+                }
+            }
+        });
+
+        Button btnAlterarRendimento = findViewById(R.id.btnAlterarRendimento);
+        btnAlterarRendimento.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                EditText novoRendimento = findViewById(R.id.etNovoRendimento);
+                if(!novoRendimento.getText().toString().isEmpty()) {
+                    int y = Integer.parseInt(novoRendimento.getText().toString());
+
+                    //percorrendo o array de lista de ingredientes
+                    for(int i=0; i<ingredientes.getValue().size(); i++) {
+                        int r = recipe.getRendimento();
+                        float x = Float.parseFloat(ingredientes.getValue().get(i).getQuantidade());
+                        String z = String.valueOf((y*x)/r);
+
+                        ingredientes.getValue().get(i).setQuantidade(z);
+                        ingredientes.observe(RecipeDisplayActivity.this, new Observer<List<Ingrediente>>() {
+                            @Override
+                            public void onChanged(List<Ingrediente> ingredientes) {
+                                IngredientsAdapter ingredientsAdapter = new IngredientsAdapter(RecipeDisplayActivity.this, ingredientes);
+                                rvIngredientes.setAdapter(ingredientsAdapter);
+                            }
+                        });
+                    }
+                    recipe.setRendimento(y);
                 }
             }
         });

@@ -40,6 +40,7 @@
     <string name="esqueceu_senha">Esqueceu a senha?</string>
     <string name="tv_ingredientes">Ingredientes</string>
     <string name="tv_tutorial">Modo de preparo</string>
+    <string name="tv_rendimento">Outro rendimento:</string>
 
     <!--Static text-->
     <string name="send_email">Digite o email associado a sua conta Plater. Um código de verificação será enviado nos próximos instantes.</string>
@@ -64,6 +65,7 @@
     <string name="btn_envie_email">Enviar código</string>
     <string name="btn_alterarSenha">Alterar senha</string>
     <string name="btn_verificarCodigo">Verificar código</string>
+    <string name="btn_ok">Ok</string>
 
     <!--Dialogs-->
     <string name="ad_delete_account">Tem certeza de que deseja excluir a sua conta? Todos os seus dados, como receitas favoritas, serão perdidos para sempre.</string>

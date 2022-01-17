@@ -41,21 +41,25 @@ public class RecipeDisplayViewModel extends AndroidViewModel {
 
     public RecipeDisplayViewModel(@NonNull Application application, int idReceita) {
         super(application);
-        db = MyDB.getDatabase(application);
+        this.db = MyDB.getDatabase(application);
         this.idReceita = idReceita;
         this.email = Config.getLogin(application);
         this.senha = Config.getPassword(application);
     }
 
-    public LiveData<List<Ingrediente>> getIngredients() {
-        ingredientes = new MutableLiveData<List<Ingrediente>>();
-        loadIngredients();
+    public MutableLiveData<List<Ingrediente>> getIngredients() {
+        if(ingredientes == null) {
+            ingredientes = new MutableLiveData<List<Ingrediente>>();
+            loadIngredients();
+        }
         return ingredientes;
     }
 
     public LiveData<List<PassoPreparo>> getModoPreparo() {
-        modoPreparo = new MutableLiveData<List<PassoPreparo>>();
-        loadModoPreparo();
+        if(modoPreparo == null) {
+            modoPreparo = new MutableLiveData<List<PassoPreparo>>();
+            loadModoPreparo();
+        }
         return modoPreparo;
     }
 

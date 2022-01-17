@@ -60,35 +60,11 @@
                     android:text="10 Min" />
 
                 <TextView
-                    android:id="@+id/tvDimRendimento"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="8dp"
-                    android:layout_marginRight="8dp"
-                    android:layout_weight="0"
-                    android:fontFamily="@font/poppins_bold"
-                    android:text="-"
-                    android:textColor="@color/light_orange"
-                    android:textSize="16sp" />
-
-                <TextView
                     android:id="@+id/tvRendimento"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="0"
-                    android:text="1 pessoa" />
-
-                <TextView
-                    android:id="@+id/tvAumRendimento"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginLeft="8dp"
                     android:layout_weight="1"
-                    android:fontFamily="@font/poppins_bold"
-                    android:text="+"
-                    android:textColor="@color/light_orange"
-                    android:textSize="16sp" />
+                    android:text="1 pessoa" />
 
                 <ImageView
                     android:id="@+id/btnFavoritar"
@@ -96,6 +72,36 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="0"
                     app:srcCompat="@drawable/ic_favoritar" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tvNovoRendimento"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/tv_rendimento" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="8dp"
+                android:layout_weight="1"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:id="@+id/etNovoRendimento"
+                    android:layout_width="100dp"
+                    android:layout_height="40dp"
+                    android:layout_weight="0"
+                    android:background="@drawable/et_rendimento_form"
+                    android:ems="10"
+                    android:inputType="number"
+                    tools:ignore="NestedWeights" />
+
+                <Button
+                    android:id="@+id/btnAlterarRendimento"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/btn_ok" />
             </LinearLayout>
 
             <TextView

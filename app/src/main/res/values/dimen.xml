@@ -14,4 +14,7 @@
     <dimen name="recipeDescription_max_height">40dp</dimen>
 
     <dimen name="category_container">70dp</dimen>
+
+    <dimen name="et_rendimento_width">5dp</dimen>
+    <dimen name="et_rendimento_height">20dp</dimen>
 </resources>
