@@ -1,8 +1,10 @@
 package com.example.plater.activities;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -263,6 +265,75 @@ public class AccountConfigActivity extends AppCompatActivity {
 
                 Intent i = new Intent(AccountConfigActivity.this, LoginActivity.class);
                 startActivity(i);
+            }
+        });
+
+        TextView tvDeleteAccount = findViewById(R.id.tvDeleteAccount);
+        tvDeleteAccount.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(AccountConfigActivity.this);
+                builder.setMessage(R.string.ad_delete_account)
+                        .setPositiveButton(R.string.ad_sim, new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                // DELETE THE ACCOUNT :(
+                                ExecutorService executorService = Executors.newSingleThreadExecutor();
+                                executorService.execute(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        HttpRequest httpRequest = new HttpRequest(Config.SERVER_URL_BASE + "/excluir_usuario.php", "POST", "UTF-8");
+                                        httpRequest.setBasicAuth(Config.getLogin(AccountConfigActivity.this), Config.getPassword(AccountConfigActivity.this));
+                                        httpRequest.addParam("username", Config.getUsername(AccountConfigActivity.this));
+
+                                        try {
+                                            InputStream is = httpRequest.execute();
+                                            String result = Util.inputStream2String(is, "UTF-8");
+                                            httpRequest.finish();
+
+                                            Log.d("HTTP_REQUEST_RESULT", result);
+
+                                            JSONObject jsonObject = new JSONObject(result);
+                                            final int success = jsonObject.getInt("success");
+                                            if(success == 1) {
+                                                runOnUiThread(new Runnable() {
+                                                    @Override
+                                                    public void run() {
+                                                        Config.setLogin(AccountConfigActivity.this, "");
+                                                        Config.setPassword(AccountConfigActivity.this, "");
+                                                        Config.setUsername(AccountConfigActivity.this, "");
+                                                        Config.setName(AccountConfigActivity.this, "");
+
+                                                        Toast.makeText(AccountConfigActivity.this, "O usuário foi excluído.", Toast.LENGTH_LONG).show();
+                                                        Intent i = new Intent(AccountConfigActivity.this, LoginActivity.class);
+                                                        startActivity(i);
+                                                    }
+                                                });
+                                            }
+                                            else {
+                                                final String message = jsonObject.getString("message");
+                                                runOnUiThread(new Runnable() {
+                                                    @Override
+                                                    public void run() {
+                                                        Toast.makeText(AccountConfigActivity.this, message, Toast.LENGTH_LONG).show();
+                                                    }
+                                                });
+                                            }
+                                        } catch (IOException | JSONException e) {
+                                            e.printStackTrace();
+                                        }
+                                    }
+                                });
+                            }
+                        })
+                        .setNegativeButton(R.string.ad_nao, new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                // DO NOT DELETE MY ACCOUNT!!!
+                            }
+                        });
+                AlertDialog dialog = builder.create();
+                dialog.show();
+                //Intent i = new Intent(AccountConfigActivity.this, MainActivity.class);
+                //startActivity(i);
             }
         });
     }

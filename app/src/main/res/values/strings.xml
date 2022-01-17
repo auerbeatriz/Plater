@@ -29,6 +29,7 @@
     <string name="et_code2">Segundo número da sequência</string>
     <string name="et_code3">Terceiro número da sequência</string>
     <string name="et_code4">Qaurto número da sequência</string>
+    <string name="search_hint">Pesquisar receitas</string>
 
     <!--TextView-->
     <string name="signup">Cadastro</string>
@@ -63,4 +64,10 @@
     <string name="btn_envie_email">Enviar código</string>
     <string name="btn_alterarSenha">Alterar senha</string>
     <string name="btn_verificarCodigo">Verificar código</string>
+
+    <!--Dialogs-->
+    <string name="ad_delete_account">Tem certeza de que deseja excluir a sua conta? Todos os seus dados, como receitas favoritas, serão perdidos para sempre.</string>
+    <string name="ad_sim">Sim</string>
+    <string name="ad_nao">Não</string>
+
 </resources>

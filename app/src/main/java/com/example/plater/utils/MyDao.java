@@ -42,4 +42,7 @@ public interface MyDao {
 
     @Query(("SELECT * FROM recipe WHERE idCategoria=:idCategoria"))
     List<Recipe> getCategoryRecipes(int idCategoria);
+
+    @Query("SELECT * FROM recipe WHERE titulo LIKE '%' || :pesquisa || '%' OR descricao LIKE '%' || :pesquisa || '%' OR categoria LIKE '%' || :pesquisa || '%'")
+    List<Recipe> searchRecipes(String pesquisa);
 }
