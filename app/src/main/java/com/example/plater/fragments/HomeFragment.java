@@ -8,7 +8,6 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
@@ -17,9 +16,7 @@ import android.view.ViewGroup;
 
 import com.example.plater.R;
 import com.example.plater.Recipe;
-import com.example.plater.adapters.FilterAdapter;
 import com.example.plater.adapters.RecipeAdapter;
-import com.example.plater.models.FilterViewModel;
 import com.example.plater.models.MainActivityViewModel;
 
 import java.util.List;
@@ -61,19 +58,6 @@ public class HomeFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-
-        //  exibindo a área de filtros -> aqui pegamos as listas de filtros disponiveis
-        FilterViewModel filterViewModel = new ViewModelProvider(getActivity()).get(FilterViewModel.class);
-        List<Integer> filterIconsList = filterViewModel.getFilterIconsList();
-        List<Integer> filterIconsSelectedList = filterViewModel.getFilterIconsSelectedList();
-        FilterAdapter filterAdapter = new FilterAdapter(getContext(), filterIconsList, filterIconsSelectedList);
-
-        //  setando recyclerview de filtros
-        RecyclerView rvFilters = getView().findViewById(R.id.rv_filtersHome);
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
-        rvFilters.setLayoutManager(linearLayoutManager);
-        rvFilters.setAdapter(filterAdapter);
-
         //  setando o recyclerview de receitas
         GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(), 2);
 
