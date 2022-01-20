@@ -10,7 +10,7 @@
 
     <!--Options name-->
     <string name="home">Home</string>
-    <string name="filters">Filtros</string>
+    <string name="categories">Categorias</string>
     <string name="recipe_book">Livro de Receitas</string>
     <string name="config_option">Configurações</string>
 

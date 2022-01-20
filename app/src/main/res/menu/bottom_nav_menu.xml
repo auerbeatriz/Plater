@@ -8,9 +8,9 @@
         android:title="@string/home"
         app:showAsAction="ifRoom" />
     <item
-        android:id="@+id/filterView"
+        android:id="@+id/categoryView"
         android:icon="@drawable/ic_baseline_filter_alt_24"
-        android:title="@string/filters"
+        android:title="@string/categories"
         app:showAsAction="ifRoom" />
     <item
         android:id="@+id/recipeBookView"

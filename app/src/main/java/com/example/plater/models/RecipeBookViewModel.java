@@ -82,15 +82,14 @@ public class RecipeBookViewModel extends AndroidViewModel {
                         for (int i = 0; i < jsonArray.length(); i++) {
                             JSONObject jRecipe = jsonArray.getJSONObject(i);
 
-                            //TODO: AJUSTAR ESSA LISTA PARA RECEBER A MILTIMIDIA
                             int id = parseInt(jRecipe.getString("id_receita"));
 
                             Recipe recipe = db.myDao().getRecipe(id);
                             favoriteRecipes.add(recipe);
                         }
                         //  avisa a products que a lista de produtos mudou
-                        favoriteRecipesList.postValue(favoriteRecipes);
                     }
+                    favoriteRecipesList.postValue(favoriteRecipes);
                 } catch (IOException | JSONException e) {
                     e.printStackTrace();
                 }
@@ -101,5 +100,4 @@ public class RecipeBookViewModel extends AndroidViewModel {
     public void refreshFavoriteRecipes() {
         loadFavoriteRecipes();
     }
-
 }

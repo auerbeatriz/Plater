@@ -1,18 +1,36 @@
 package com.example.plater.activities;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SearchView;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.MenuItemCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModelProvider;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.app.SearchManager;
+import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewAnimationUtils;
+import android.widget.AutoCompleteTextView;
+import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.TextView;
 
+import com.example.plater.Recipe;
 import com.example.plater.fragments.CategoriesFragment;
 import com.example.plater.fragments.HomeFragment;
 import com.example.plater.models.MainActivityViewModel;
@@ -20,6 +38,9 @@ import com.example.plater.R;
 import com.example.plater.fragments.RecipeBookFragment;
 import com.example.plater.utils.Config;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+
+import java.lang.reflect.Field;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -55,13 +76,11 @@ public class MainActivity extends AppCompatActivity {
                             HomeFragment homeFragment = HomeFragment.newInstance();
                             setFragment(homeFragment);
                             break;
-                        case R.id.filterView:
+                        case R.id.categoryView:
                             CategoriesFragment categoriesFragment = CategoriesFragment.newInstance();
                             setFragment(categoriesFragment);
                             break;
                         case R.id.recipeBookView:
-                            //Intent i = new Intent(MainActivity.this, RecipeBookActivity.class);
-                            //startActivity(i);
                             RecipeBookFragment recipeBookFragment = RecipeBookFragment.newInstance();
                             setFragment(recipeBookFragment);
                             break;
@@ -80,6 +99,12 @@ public class MainActivity extends AppCompatActivity {
         super.onCreateOptionsMenu(menu);
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.main_toolbar, menu);
+
+        // Get the SearchView and set the searchable configuration
+        SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
+        SearchView searchView = (SearchView) menu.findItem(R.id.icSearch).getActionView();
+        searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
+
         return true;
     }
 
@@ -91,8 +116,7 @@ public class MainActivity extends AppCompatActivity {
                 Intent i = new Intent(MainActivity.this, AccountConfigActivity.class);
                 startActivity(i);
                 return true;
-            case R.id.app_bar_search:
-                //TODO: INTEGRAR BUSCA
+            case R.id.icSearch:
                 return true;
             default:
                 return super.onOptionsItemSelected(item);

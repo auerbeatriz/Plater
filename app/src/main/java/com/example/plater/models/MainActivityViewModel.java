@@ -64,7 +64,7 @@ public class MainActivityViewModel extends AndroidViewModel {
                 int lastRecipe;
                 if(recipesList.size() > 0) {
                     recipes.postValue(recipesList);
-                   lastRecipe = recipesList.get(recipesList.size() - 1).getId();
+                    lastRecipe = recipesList.get(recipesList.size() - 1).getId();
                 }
                 else { lastRecipe = 0; }
 

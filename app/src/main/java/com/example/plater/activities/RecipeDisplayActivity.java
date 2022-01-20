@@ -26,6 +26,7 @@ import com.example.plater.R;
 import com.example.plater.Recipe;
 import com.example.plater.adapters.IngredientsAdapter;
 import com.example.plater.adapters.PassoPreparoAdapter;
+import com.example.plater.models.RecipeBookViewModel;
 import com.example.plater.models.RecipeDisplayViewModel;
 import com.example.plater.utils.Config;
 import com.example.plater.utils.HttpRequest;

@@ -10,6 +10,7 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,6 +29,9 @@ import java.util.List;
  * create an instance of this fragment.
  */
 public class RecipeBookFragment extends Fragment {
+
+    LiveData<List<Recipe>> favoriteRecipesList;
+    RecipeBookViewModel viewModel;
 
     public RecipeBookFragment() {
         // Required empty public constructor
@@ -67,8 +71,8 @@ public class RecipeBookFragment extends Fragment {
 
         final String username = Config.getLogin(getActivity());
         final String senha = Config.getPassword(getActivity());
-        RecipeBookViewModel viewModel = new ViewModelProvider(getActivity()).get(RecipeBookViewModel.class);
-        LiveData<List<Recipe>> favoriteRecipesList = viewModel.getFavoriteRecipes();
+        this.viewModel = new ViewModelProvider(getActivity()).get(RecipeBookViewModel.class);
+        this.favoriteRecipesList = viewModel.getFavoriteRecipes();
         favoriteRecipesList.observe(getViewLifecycleOwner(), new Observer<List<Recipe>>() {
             @Override
             public void onChanged(List<Recipe> recipes) {
@@ -77,5 +81,11 @@ public class RecipeBookFragment extends Fragment {
             }
         });
 
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        viewModel.refreshFavoriteRecipes();
     }
 }

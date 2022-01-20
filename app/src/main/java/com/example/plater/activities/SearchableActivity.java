@@ -1,6 +1,7 @@
 package com.example.plater.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Observer;
@@ -11,6 +12,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.app.SearchManager;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
+import android.widget.TextView;
 
 import com.example.plater.R;
 import com.example.plater.Recipe;
@@ -33,12 +36,18 @@ public class SearchableActivity extends AppCompatActivity {
 
         // Get the intent, verify the action and get the query
         Intent intent = getIntent();
+
         if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
             GridLayoutManager gridLayoutManager = new GridLayoutManager(SearchableActivity.this, 2);
             RecyclerView rvRecipes = findViewById(R.id.rvSearch);
             rvRecipes.setLayoutManager(gridLayoutManager);
 
             String query = intent.getStringExtra(SearchManager.QUERY);
+
+            TextView tvSearch = findViewById(R.id.tvSearch);
+            String text = "Resultados para a busca: " + query;
+            tvSearch.setText(text);
+
             this.recipes = new MutableLiveData<List<Recipe>>();
             doMySearch(query);
 
