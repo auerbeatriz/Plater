@@ -35,7 +35,8 @@
         <activity
             android:name=".activities.RecipeDisplayActivity"
             android:label=""
-            android:parentActivityName=".activities.MainActivity" />
+            android:parentActivityName=".activities.MainActivity"
+            android:windowSoftInputMode="stateHidden" />
         <activity
             android:name=".activities.ChangePasswordActivity"
             android:label="Alterar a senha"
