@@ -2,6 +2,7 @@ package com.example.plater.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Observer;
@@ -33,12 +34,17 @@ import com.example.plater.models.RecipeDisplayViewModel;
 import com.example.plater.utils.Config;
 import com.example.plater.utils.HttpRequest;
 import com.example.plater.utils.Util;
+import com.google.android.youtube.player.YouTubeInitializationResult;
+import com.google.android.youtube.player.YouTubePlayer;
+import com.google.android.youtube.player.YouTubePlayerFragment;
+import com.google.android.youtube.player.YouTubePlayerSupportFragment;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.text.DecimalFormat;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -48,7 +54,6 @@ public class RecipeDisplayActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_recipe_display);
 
         //  obtendo qual foi a receita selecionada
         Intent i = getIntent();
@@ -58,10 +63,55 @@ public class RecipeDisplayActivity extends AppCompatActivity {
         final String senha = Config.getPassword(RecipeDisplayActivity.this);
         final String username = Config.getUsername(RecipeDisplayActivity.this);
 
+        ExecutorService executorService = Executors.newSingleThreadExecutor();
+
+        if(recipe.getUrlType().equals("t")) {
+            setContentView(R.layout.activity_recipe_display);
+
+            ImageView imvRecipePhoto = findViewById(R.id.imvRecipePhoto);
+
+            executorService.execute(new Runnable() {
+                @Override
+                public void run() {
+                    HttpRequest httpRequest = new HttpRequest(recipe.getMediaUrl(), "GET", "UTF-8");
+                    try {
+                        InputStream is = httpRequest.execute();
+                        Bitmap img = BitmapFactory.decodeStream(is);
+                        is.close();
+                        httpRequest.finish();
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                imvRecipePhoto.setImageBitmap(img);
+                            }
+                        });
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            });
+        }
+        else {
+            setContentView(R.layout.activity_recipe_display_video);
+
+            YouTubePlayer.OnInitializedListener onInitializedListener = new YouTubePlayer.OnInitializedListener() {
+                @Override
+                public void onInitializationSuccess(YouTubePlayer.Provider provider, YouTubePlayer youTubePlayer, boolean b) {
+                    youTubePlayer.loadVideo(recipe.getMediaUrl());
+                }
+
+                @Override
+                public void onInitializationFailure(YouTubePlayer.Provider provider, YouTubeInitializationResult youTubeInitializationResult) {
+                }
+            };
+
+            YouTubePlayerFragment youTubePlayerFragment = (YouTubePlayerFragment) getFragmentManager().findFragmentById(R.id.fgRecipeVideo);
+            youTubePlayerFragment.initialize(Config.API_KEY, onInitializedListener);
+        }
+
         ImageView btnFavoritar = findViewById(R.id.btnFavoritar);
         btnFavoritar.setTag(R.drawable.ic_favoritar);
 
-        ExecutorService executorService = Executors.newSingleThreadExecutor();
         executorService.execute(new Runnable() {
             @Override
             public void run() {
@@ -98,29 +148,6 @@ public class RecipeDisplayActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.tb_RecipeName);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
-        ImageView imvRecipePhoto = findViewById(R.id.imvRecipePhoto);
-
-        executorService.execute(new Runnable() {
-            @Override
-            public void run() {
-                HttpRequest httpRequest = new HttpRequest(recipe.getMediaUrl(), "GET", "UTF-8");
-                try {
-                    InputStream is = httpRequest.execute();
-                    Bitmap img = BitmapFactory.decodeStream(is);
-                    is.close();
-                    httpRequest.finish();
-                    runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            imvRecipePhoto.setImageBitmap(img);
-                        }
-                    });
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        });
 
         //  setando recyclerview de ingredientes e modo de preparo
         RecyclerView rvIngredientes = findViewById(R.id.rvIngredientes);
@@ -269,12 +296,13 @@ public class RecipeDisplayActivity extends AppCompatActivity {
                 EditText novoRendimento = findViewById(R.id.etNovoRendimento);
                 if(!novoRendimento.getText().toString().isEmpty()) {
                     int y = Integer.parseInt(novoRendimento.getText().toString());
+                    DecimalFormat df = new DecimalFormat("###.0");
 
                     //percorrendo o array de lista de ingredientes
                     for(int i=0; i<ingredientes.getValue().size(); i++) {
                         int r = recipe.getRendimento();
                         float x = Float.parseFloat(ingredientes.getValue().get(i).getQuantidade());
-                        String z = String.valueOf((y*x)/r);
+                        String z = df.format((y*x)/r);
 
                         ingredientes.getValue().get(i).setQuantidade(z);
                         ingredientes.observe(RecipeDisplayActivity.this, new Observer<List<Ingrediente>>() {
@@ -291,4 +319,5 @@ public class RecipeDisplayActivity extends AppCompatActivity {
         });
 
     }
+
 }

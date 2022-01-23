@@ -7,6 +7,7 @@ public class Config {
 
     //TODO: alterar nome do servidor para o da app no heroku
     public static String SERVER_URL_BASE = "http://plater.tech/";
+    public static String API_KEY = "AIzaSyCQtaGdMDFJ1z6MQe6QVbpsRF4BvMOKAW8";
 
     public static void setLogin(Context context, String login) {
         SharedPreferences mPrefs = context.getSharedPreferences("configs", 0);
