@@ -51,13 +51,19 @@ public class RecipeAdapter extends RecyclerView.Adapter {
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         Recipe recipe = recipeList.get(position);
 
+        String url;
+        if(recipe.getUrlType().equals("t")) {
+            url = recipe.getMediaUrl();
+        } else {
+            url = "http://img.youtube.com/vi/" + recipe.getMediaUrl() + "/default.jpg";
+        }
         ImageView imageView = holder.itemView.findViewById(R.id.imvRecipeImage);
 
         ExecutorService executorService = Executors.newSingleThreadExecutor();
         executorService.execute(new Runnable() {
             @Override
             public void run() {
-                HttpRequest httpRequest = new HttpRequest(recipe.getMediaUrl(), "GET", "UTF-8");
+                HttpRequest httpRequest = new HttpRequest(url, "GET", "UTF-8");
                 try {
                     InputStream is = httpRequest.execute();
                     Bitmap img = BitmapFactory.decodeStream(is);

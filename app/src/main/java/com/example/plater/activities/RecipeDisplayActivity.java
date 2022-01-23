@@ -10,6 +10,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 
 import android.util.Log;
@@ -96,6 +98,29 @@ public class RecipeDisplayActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.tb_RecipeName);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        ImageView imvRecipePhoto = findViewById(R.id.imvRecipePhoto);
+
+        executorService.execute(new Runnable() {
+            @Override
+            public void run() {
+                HttpRequest httpRequest = new HttpRequest(recipe.getMediaUrl(), "GET", "UTF-8");
+                try {
+                    InputStream is = httpRequest.execute();
+                    Bitmap img = BitmapFactory.decodeStream(is);
+                    is.close();
+                    httpRequest.finish();
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            imvRecipePhoto.setImageBitmap(img);
+                        }
+                    });
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
 
         //  setando recyclerview de ingredientes e modo de preparo
         RecyclerView rvIngredientes = findViewById(R.id.rvIngredientes);
