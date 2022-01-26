@@ -87,8 +87,6 @@ public class ChangePasswordActivity extends AppCompatActivity {
                             String result = Util.inputStream2String(is, "UTF-8");
                             httpRequest.finish();
 
-                            Log.d("HTTP_REQUEST_RESULT", result);
-
                             JSONObject jsonObject = new JSONObject(result);
                             final int success = jsonObject.getInt("success");
                             if(success == 1) {

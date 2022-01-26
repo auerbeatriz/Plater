@@ -1,11 +1,7 @@
 package com.example.plater.adapters;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,15 +16,9 @@ import com.example.plater.R;
 import com.example.plater.Recipe;
 import com.example.plater.activities.RecipeDisplayActivity;
 import com.example.plater.holders.MyViewHolder;
-import com.example.plater.utils.HttpRequest;
 import com.example.plater.utils.ImageCache;
-import com.example.plater.utils.Util;
 
-import java.io.IOException;
-import java.io.InputStream;
 import java.util.List;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 
 public class RecipeAdapter extends RecyclerView.Adapter {
 

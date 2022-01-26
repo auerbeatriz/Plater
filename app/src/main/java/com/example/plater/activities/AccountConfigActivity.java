@@ -75,8 +75,6 @@ public class AccountConfigActivity extends AppCompatActivity {
                                 String result = Util.inputStream2String(is, "UTF-8");
                                 httpRequest.finish();
 
-                                Log.d("HTTP_REQUEST_RESULT", result);
-
                                 JSONObject jsonObject = new JSONObject(result);
                                 final int success = jsonObject.getInt("success");
                                 if(success == 1) {
@@ -134,8 +132,6 @@ public class AccountConfigActivity extends AppCompatActivity {
                                 InputStream is = httpRequest.execute();
                                 String result = Util.inputStream2String(is, "UTF-8");
                                 httpRequest.finish();
-
-                                Log.d("HTTP_REQUEST_RESULT", result);
 
                                 JSONObject jsonObject = new JSONObject(result);
                                 final int success = jsonObject.getInt("success");
@@ -216,8 +212,6 @@ public class AccountConfigActivity extends AppCompatActivity {
                             String result = Util.inputStream2String(is, "UTF-8");
                             httpRequest.finish();
 
-                            Log.d("HTTP_REQUEST_RESULT", result);
-
                             JSONObject jsonObject = new JSONObject(result);
                             final int success = jsonObject.getInt("success");
                             if(success == 1) {
@@ -289,8 +283,6 @@ public class AccountConfigActivity extends AppCompatActivity {
                                             InputStream is = httpRequest.execute();
                                             String result = Util.inputStream2String(is, "UTF-8");
                                             httpRequest.finish();
-
-                                            Log.d("HTTP_REQUEST_RESULT", result);
 
                                             JSONObject jsonObject = new JSONObject(result);
                                             final int success = jsonObject.getInt("success");

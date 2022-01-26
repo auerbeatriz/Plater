@@ -72,8 +72,6 @@ public class RecipeBookViewModel extends AndroidViewModel {
                     String result = Util.inputStream2String(is, "UTF-8");
                     httpRequest.finish();
 
-                    Log.d("HTTP_REQUEST_RESULT", result);
-
                     JSONObject jsonObject = new JSONObject(result);
                     int success = jsonObject.getInt("success");
                     if (success == 1) {

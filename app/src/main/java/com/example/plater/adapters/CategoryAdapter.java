@@ -2,8 +2,6 @@ package com.example.plater.adapters;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,14 +15,9 @@ import com.example.plater.Category;
 import com.example.plater.R;
 import com.example.plater.activities.CategoryRecipesActivity;
 import com.example.plater.holders.MyViewHolder;
-import com.example.plater.utils.HttpRequest;
 import com.example.plater.utils.ImageCache;
 
-import java.io.IOException;
-import java.io.InputStream;
 import java.util.List;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 
 public class CategoryAdapter extends RecyclerView.Adapter {
     Activity context;

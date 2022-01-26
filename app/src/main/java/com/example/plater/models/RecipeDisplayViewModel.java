@@ -85,9 +85,6 @@ public class RecipeDisplayViewModel extends AndroidViewModel {
                         String result = Util.inputStream2String(is, "UTF-8");
                         httpRequest.finish();
 
-                        Log.d("HTTP_REQUEST_RESULT", result);
-                        Log.d("HTTP_REQUEST_RESULT", String.valueOf(idReceita));
-
                         JSONObject jsonObject = new JSONObject(result);
                         int success = jsonObject.getInt("success");
                         if (success == 1) {
@@ -133,8 +130,6 @@ public class RecipeDisplayViewModel extends AndroidViewModel {
                         InputStream is = httpRequest.execute();
                         String result = Util.inputStream2String(is, "UTF-8");
                         httpRequest.finish();
-
-                        Log.d("HTTP_REQUEST_RESULT", result);
 
                         JSONObject jsonObject = new JSONObject(result);
                         int success = jsonObject.getInt("success");

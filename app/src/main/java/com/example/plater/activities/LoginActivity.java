@@ -51,9 +51,6 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View view) {
                 view.setEnabled(false);
 
-                Log.d("TESTE_LOGIN", Config.getLogin(LoginActivity.this));
-                Log.d("TESTE_LOGIN", Config.getPassword(LoginActivity.this));
-
                 //  obtendo dados passados para login
                 EditText et_email_login = findViewById(R.id.et_email_login);
                 final String email = et_email_login.getText().toString();
@@ -83,8 +80,6 @@ public class LoginActivity extends AppCompatActivity {
                             InputStream is = httpRequest.execute();
                             String result = Util.inputStream2String(is, "UTF-8");
                             httpRequest.finish();
-
-                            Log.d("HTTP_REQUEST_RESULT", result);
 
                             JSONObject jsonObject = new JSONObject(result);
                             final int success = jsonObject.getInt("success");
