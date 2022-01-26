@@ -29,6 +29,9 @@
         <entry key="..\:/Users/beatr/StudioProjects/Plater/app/src/main/res/drawable/category_container.xml" value="0.2703125" />
         <entry key="..\:/Users/beatr/StudioProjects/Plater/app/src/main/res/drawable/et_form.xml" value="0.2703125" />
         <entry key="..\:/Users/beatr/StudioProjects/Plater/app/src/main/res/drawable/et_rendimento_form.xml" value="0.2703125" />
+        <entry key="..\:/Users/beatr/StudioProjects/Plater/app/src/main/res/drawable/ic_baseline_filter_alt_24.xml" value="0.2703125" />
+        <entry key="..\:/Users/beatr/StudioProjects/Plater/app/src/main/res/drawable/ic_launcher_background.xml" value="0.2703125" />
+        <entry key="..\:/Users/beatr/StudioProjects/Plater/app/src/main/res/drawable/rend.xml" value="0.2703125" />
         <entry key="..\:/Users/beatr/StudioProjects/Plater/app/src/main/res/drawable/tv_filter_container.xml" value="0.2703125" />
         <entry key="..\:/Users/beatr/StudioProjects/Plater/app/src/main/res/layout-land/activity_recipe_display.xml" value="0.21516754850088182" />
         <entry key="..\:/Users/beatr/StudioProjects/Plater/app/src/main/res/layout/activity_account_config.xml" value="0.25416666666666665" />
@@ -44,6 +47,7 @@
         <entry key="..\:/Users/beatr/StudioProjects/Plater/app/src/main/res/layout/fragment_recipe_book.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/beatr/StudioProjects/Plater/app/src/main/res/layout/fragment_you_tube.xml" value="0.24010416666666667" />
         <entry key="..\:/Users/beatr/StudioProjects/Plater/app/src/main/res/layout/recipe_item.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/beatr/StudioProjects/Plater/app/src/main/res/layout/tutorial_item.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/beatr/StudioProjects/Plater/app/src/main/res/menu/bottom_nav_menu.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/beatr/StudioProjects/Plater/app/src/main/res/menu/main_toolbar.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/beatr/StudioProjects/Plater/app/src/main/res/menu/search_toolbar.xml" value="0.25416666666666665" />
