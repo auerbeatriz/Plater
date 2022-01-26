@@ -8,6 +8,9 @@ import android.util.Log;
 import android.widget.ImageView;
 
 import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -44,5 +47,27 @@ public class Util {
         }
         is.close();
         return sb.toString();
+    }
+
+    /**
+     * Carrega um arquivo de imagem em um bitmap sem realizar qualquer tipo de escala.
+     * @param imagePath caminho local de onde esta localizado o arquivo de imagem.
+     * @return o bitmap.
+     */
+    public static Bitmap getBitmap(String imagePath) {
+        BitmapFactory.Options bmOptions = new BitmapFactory.Options();
+        bmOptions.inJustDecodeBounds = false;
+        return BitmapFactory.decodeFile(imagePath, bmOptions);
+    }
+
+    /**
+     * Salva um Bitmap em um arquivo.
+     * @param bmp bitmap a ser salvo
+     * @param imageLocation caminho absoluto onde esta salva a imagem
+     * @throws FileNotFoundException se o arquivo nao existe
+     */
+    public static void saveImage(Bitmap bmp, String imageLocation) throws FileNotFoundException {
+        FileOutputStream out = new FileOutputStream(imageLocation);
+        bmp.compress(Bitmap.CompressFormat.JPEG, 100, out);
     }
 }

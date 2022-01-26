@@ -21,6 +21,7 @@ import com.example.plater.Recipe;
 import com.example.plater.activities.RecipeDisplayActivity;
 import com.example.plater.holders.MyViewHolder;
 import com.example.plater.utils.HttpRequest;
+import com.example.plater.utils.ImageCache;
 import com.example.plater.utils.Util;
 
 import java.io.IOException;
@@ -57,29 +58,9 @@ public class RecipeAdapter extends RecyclerView.Adapter {
         } else {
             url = "http://img.youtube.com/vi/" + recipe.getMediaUrl() + "/default.jpg";
         }
-        ImageView imageView = holder.itemView.findViewById(R.id.imvRecipeImage);
 
-        ExecutorService executorService = Executors.newSingleThreadExecutor();
-        executorService.execute(new Runnable() {
-            @Override
-            public void run() {
-                HttpRequest httpRequest = new HttpRequest(url, "GET", "UTF-8");
-                try {
-                    InputStream is = httpRequest.execute();
-                    Bitmap img = BitmapFactory.decodeStream(is);
-                    is.close();
-                    httpRequest.finish();
-                    context.runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            imageView.setImageBitmap(img);
-                        }
-                    });
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        });
+        ImageView imageView = holder.itemView.findViewById(R.id.imvRecipeImage);
+        ImageCache.loadToImageView(context, String.valueOf(recipe.getId()), imageView, url);
 
         TextView tvTitle = holder.itemView.findViewById(R.id.tvRecipeTitle);
         tvTitle.setText(recipe.getTitulo());

@@ -18,6 +18,7 @@ import com.example.plater.R;
 import com.example.plater.activities.CategoryRecipesActivity;
 import com.example.plater.holders.MyViewHolder;
 import com.example.plater.utils.HttpRequest;
+import com.example.plater.utils.ImageCache;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -47,6 +48,8 @@ public class CategoryAdapter extends RecyclerView.Adapter {
         Category category = categories.get(position);
 
         ImageView imvCategory = holder.itemView.findViewById(R.id.imvCategory);
+        ImageCache.loadToImageView(context, String.valueOf(category.getId()), imvCategory, category.getImageUrl());
+
         ExecutorService executorService = Executors.newSingleThreadExecutor();
         executorService.execute(new Runnable() {
             @Override
@@ -66,15 +69,6 @@ public class CategoryAdapter extends RecyclerView.Adapter {
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-            }
-        });
-
-        imvCategory.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent(context, CategoryRecipesActivity.class);
-                i.putExtra("idCategoria", category.getId());
-                context.startActivity(i);
             }
         });
 
