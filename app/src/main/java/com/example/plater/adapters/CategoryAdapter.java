@@ -48,27 +48,14 @@ public class CategoryAdapter extends RecyclerView.Adapter {
         Category category = categories.get(position);
 
         ImageView imvCategory = holder.itemView.findViewById(R.id.imvCategory);
-        ImageCache.loadToImageView(context, String.valueOf(category.getId()), imvCategory, category.getImageUrl());
+        ImageCache.loadToImageView(context, category.getNome(), imvCategory, category.getImageUrl());
 
-        ExecutorService executorService = Executors.newSingleThreadExecutor();
-        executorService.execute(new Runnable() {
+        imvCategory.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void run() {
-                HttpRequest httpRequest = new HttpRequest(category.getImageUrl(), "GET", "UTF-8");
-                try {
-                    InputStream is = httpRequest.execute();
-                    Bitmap img = BitmapFactory.decodeStream(is);
-                    is.close();
-                    httpRequest.finish();
-                    context.runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            imvCategory.setImageBitmap(img);
-                        }
-                    });
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+            public void onClick(View v) {
+                Intent i = new Intent(context, CategoryRecipesActivity.class);
+                i.putExtra("idCategoria", category.getId());
+                context.startActivity(i);
             }
         });
 

@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.media.Image;
 import android.os.Bundle;
 
 import android.util.Log;
@@ -33,6 +34,7 @@ import com.example.plater.models.RecipeBookViewModel;
 import com.example.plater.models.RecipeDisplayViewModel;
 import com.example.plater.utils.Config;
 import com.example.plater.utils.HttpRequest;
+import com.example.plater.utils.ImageCache;
 import com.example.plater.utils.Util;
 import com.google.android.youtube.player.YouTubeInitializationResult;
 import com.google.android.youtube.player.YouTubePlayer;
@@ -69,27 +71,7 @@ public class RecipeDisplayActivity extends AppCompatActivity {
             setContentView(R.layout.activity_recipe_display);
 
             ImageView imvRecipePhoto = findViewById(R.id.imvRecipePhoto);
-
-            executorService.execute(new Runnable() {
-                @Override
-                public void run() {
-                    HttpRequest httpRequest = new HttpRequest(recipe.getMediaUrl(), "GET", "UTF-8");
-                    try {
-                        InputStream is = httpRequest.execute();
-                        Bitmap img = BitmapFactory.decodeStream(is);
-                        is.close();
-                        httpRequest.finish();
-                        runOnUiThread(new Runnable() {
-                            @Override
-                            public void run() {
-                                imvRecipePhoto.setImageBitmap(img);
-                            }
-                        });
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                }
-            });
+            ImageCache.loadToImageView(RecipeDisplayActivity.this, String.valueOf(recipe.getId()), imvRecipePhoto, recipe.getMediaUrl());
         }
         else {
             setContentView(R.layout.activity_recipe_display_video);
@@ -295,16 +277,16 @@ public class RecipeDisplayActivity extends AppCompatActivity {
             public void onClick(View view) {
                 EditText novoRendimento = findViewById(R.id.etNovoRendimento);
                 if(!novoRendimento.getText().toString().isEmpty()) {
-                    int y = Integer.parseInt(novoRendimento.getText().toString());
-                    DecimalFormat df = new DecimalFormat("###.0");
+                    int r = recipe.getRendimento();                                 // rendimento real da receita
+                    int y = Integer.parseInt(novoRendimento.getText().toString());  // novo rendimento da receita
 
                     //percorrendo o array de lista de ingredientes
                     for(int i=0; i<ingredientes.getValue().size(); i++) {
-                        int r = recipe.getRendimento();
-                        float x = Float.parseFloat(ingredientes.getValue().get(i).getQuantidade());
-                        String z = df.format((y*x)/r);
+                        float x = fracao2decimal(ingredientes.getValue().get(i).getQuantidade());   // ex.: 1/2 para 0.5
+                        float z = (y*x)/r;                                                          // obtem o novo rendimento em decimal
+                        String numeroFinal = decimal2fracao(z);                                     // ex.: 1.5 para 1 1/2
 
-                        ingredientes.getValue().get(i).setQuantidade(z);
+                        ingredientes.getValue().get(i).setQuantidade(numeroFinal);
                         ingredientes.observe(RecipeDisplayActivity.this, new Observer<List<Ingrediente>>() {
                             @Override
                             public void onChanged(List<Ingrediente> ingredientes) {
@@ -317,7 +299,67 @@ public class RecipeDisplayActivity extends AppCompatActivity {
                 }
             }
         });
+    }
 
+    private float fracao2decimal(String entrada) {
+        float a;    // o primeiro numero da fracao do rendimento
+        float b;    // o segundo numero da fracao do rendimento
+        float c = 0; // o inteiro do rendimento
+        float rendimento;
+        float d = 0;
+
+        //significa que tem inteiro e fracionado
+        if(entrada.length() > 1) {
+            if(entrada.length() == 5) {
+                a = Float.parseFloat(entrada.substring(2, 3));
+                b = Float.parseFloat(entrada.substring(4));
+                c = Float.parseFloat(entrada.substring(0,1));
+            }
+            else {
+                a = Float.parseFloat(entrada.substring(0, 1));
+                b = Float.parseFloat(entrada.substring(2));
+            }
+            d = (a/b); //parte decimal
+            rendimento = d + c; //rendimento inteiro da receita
+        }
+        else {
+            rendimento = Float.parseFloat(entrada); //rendimento inteiro da receita
+        }
+
+        return rendimento;
+    }
+
+    private String decimal2fracao(float rendimento) {
+        int i = (int) rendimento;
+        float d = rendimento - i;
+
+        String numeroFinal = "";
+        String fracao = "";
+
+        //se tiver numero decimal
+        if(d > 0 && d <= 0.83 ) {
+            if(d < 0.12) { d = 0; }
+            if((0.12<d) && (d<=0.295)) { fracao = "1/4"; }
+            if((0.295<d) && (d<=0.4)) { fracao = "1/3"; }
+            if((0.4<d) && (d<=0.582)) { fracao = "1/2"; }
+            if((0.582<d) && (d<=0.7)) { fracao = "2/3"; }
+            if((0.7<d) && (d<=0.83)) { fracao = "3/4"; }
+
+            if(i == 0) {
+                numeroFinal = fracao;
+            }
+            else {
+                numeroFinal = String.valueOf(i) + " " + fracao;
+            }
+        }
+        if(d > 0.83) {
+            numeroFinal = String.valueOf(i + 1);
+        }
+        if(d == 0) {
+            numeroFinal = String.valueOf(i);
+        }
+
+        return numeroFinal;
     }
 
 }
