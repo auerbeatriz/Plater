@@ -301,25 +301,27 @@ public class RecipeDisplayActivity extends AppCompatActivity {
         float a;    // o primeiro numero da fracao do rendimento
         float b;    // o segundo numero da fracao do rendimento
         float c = 0; // o inteiro do rendimento
-        float rendimento;
+        float rendimento = 0;
         float d = 0;
 
-        //significa que tem inteiro e fracionado
-        if(entrada.length() > 1) {
-            if(entrada.length() == 5) {
-                a = Float.parseFloat(entrada.substring(2, 3));
-                b = Float.parseFloat(entrada.substring(4));
-                c = Float.parseFloat(entrada.substring(0,1));
+        if(!entrada.isEmpty()) {
+            //significa que tem inteiro e fracionado
+            if(entrada.length() > 1) {
+                if(entrada.length() == 5) {
+                    a = Float.parseFloat(entrada.substring(2, 3));
+                    b = Float.parseFloat(entrada.substring(4));
+                    c = Float.parseFloat(entrada.substring(0,1));
+                }
+                else {
+                    a = Float.parseFloat(entrada.substring(0, 1));
+                    b = Float.parseFloat(entrada.substring(2));
+                }
+                d = (a/b); //parte decimal
+                rendimento = d + c; //rendimento inteiro da receita
             }
             else {
-                a = Float.parseFloat(entrada.substring(0, 1));
-                b = Float.parseFloat(entrada.substring(2));
+                rendimento = Float.parseFloat(entrada); //rendimento inteiro da receita
             }
-            d = (a/b); //parte decimal
-            rendimento = d + c; //rendimento inteiro da receita
-        }
-        else {
-            rendimento = Float.parseFloat(entrada); //rendimento inteiro da receita
         }
 
         return rendimento;
