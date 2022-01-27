@@ -38,7 +38,7 @@ public class ImageCache {
                         httpRequest.finish();
 
                         Bitmap finalImg = Util.resizeBitmap(img, 250);
-                        Util.saveImage(img, imageLocation);
+                        Util.saveImage(finalImg, imageLocation);
 
                         activity.runOnUiThread(new Runnable() {
                             @Override
