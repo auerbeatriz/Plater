@@ -306,7 +306,7 @@ public class RecipeDisplayActivity extends AppCompatActivity {
 
         if(!entrada.isEmpty()) {
             //significa que tem inteiro e fracionado
-            if(entrada.length() > 1) {
+            if(entrada.length() > 1 && entrada.contains("/")) {
                 if(entrada.length() == 5) {
                     a = Float.parseFloat(entrada.substring(2, 3));
                     b = Float.parseFloat(entrada.substring(4));

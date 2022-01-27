@@ -37,12 +37,13 @@ public class ImageCache {
                         is.close();
                         httpRequest.finish();
 
+                        Bitmap finalImg = Util.resizeBitmap(img, 250);
                         Util.saveImage(img, imageLocation);
 
                         activity.runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
-                                imageView.setImageBitmap(img);
+                                imageView.setImageBitmap(finalImg);
                             }
                         });
                     } catch (IOException e) {
